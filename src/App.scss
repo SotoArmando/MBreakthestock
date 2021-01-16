@@ -269,6 +269,10 @@
 		width: 100%;
 	}
 
+	.allwidth {
+		width: 100%;
+	}
+
 	// $maskedicons: ("heart",url(../res/svg/box/heart.svg)),("search", url(../res/svg/box/search.svg));
 	$back-colors: ("0",#F9F9F9),("1", #008000),("2", #FFFFFF),("3", rgba(56, 56, 56, .04)), ("4",#FDE07B), ("5",#FFDC63), ("6",#C4C4C4), ("7",#FEE580), ("8",rgba(254, 229, 128, .14)),("mask_pink", #E490B7), ;
 	$fore-colors: ("0",#008000),("1", #008000),("2", #E490B7), ("4",rgba(56, 56, 56, .24)) , ("6",rgba(0,0,15,.34)), ("5",#383838), ("7",rgba(56, 56, 56, .94)) , ("8",rgba(56, 56, 56, .24));

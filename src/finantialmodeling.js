@@ -23,11 +23,11 @@ async function fetchForexCandles(symbol) {
     if (data.hasOwnProperty("c")){
         return data.c[0];
     } else {
-        return 0;
+        return 'No data';
     }
 }
 async function fetchCryptoCandles(symbol) { 
-    debugger;
+
     const date = new Date();
     date.setMinutes(new Date().getMinutes() - (60 * 48));
     const from = parseInt(+ date / 1e3);
@@ -40,7 +40,7 @@ async function fetchCryptoCandles(symbol) {
         
         return data.c[0];
     } else {
-        return 0;
+        return 'No data';
     }
     
 }
