@@ -1,0 +1,435 @@
+
+@function core($base) {
+  $result: 0.009658113525734344;
+  @for $_ from 1 through $base {
+	$result: $result * 1.1875;
+  }
+  @return $result;
+}
+@function core_font($base: 0) {
+  $result: core(27 + $base);
+
+  @return $result;
+}
+
+@function body_width($base: 1,$width : 100%) {
+	@return $width / $base;
+}
+
+@function core_box($base: 0,$width : 100%) {
+	@return core_font($base) * $width;
+}
+
+@mixin app($bodywidth, $proportion) {
+	@for $i from 1 through 10 {
+	  .o_#{$i} > * {
+		flex-basis: 100% / $i;
+	  }
+	}
+	
+	.op_1 > * {
+		flex-basis: calc(($bodywidth / 14rem) - ($bodywidth % 14rem));
+	}
+	.o_33 > * {
+		flex-basis: calc(100% / 3);
+	}
+	
+	@for $i from 1 through 9 {
+	  .f#{$i * 100} {
+		font-weight: $i * 100;
+	  }
+	}
+
+    .ratio_0 {
+		min-height: 14rem * core_font(2);
+		background-color: rgb(230,230,230);
+		position: relative;
+		// transform: scale(1 - core(3));
+		// background: url(../res/pic/pic2.jpg);
+		background-size: cover !important;
+		background-position: center;
+		// margin: 0 (core(14) * 1rem);
+	}
+
+
+	@for $i from 1 through 50 {
+	  .corebox_#{$i} {
+		min-height: core_box($i - 27,$bodywidth) ;
+		width: 100%;
+	  }
+	  .corebox_x#{$i} {
+		min-width: core_box($i - 27,$bodywidth) ;
+	  }
+	}
+
+	@for $i from 1 through 50 {
+	  .f_#{$i} {
+		font-size: 1rem * core_font($i);
+	  }
+	}
+	@for $i from 1 through 50 {
+	  .z_index#{$i} {
+		z-index: $i;
+	  }
+	}
+	.z_size_1 {
+		transform: scaleX(1 - core(3));
+	}
+	@for $i from 1 through 50 {
+		.pad_t#{$i}  {
+			padding-top: 1rem * core_font($i - 27);
+		}
+		.pad_r#{$i}  {
+			padding-right: 1rem * core_font($i - 27);
+		}
+		.pad_b#{$i}  {
+			padding-bottom: 1rem * core_font($i - 27);
+		}
+		.pad_l#{$i}  {
+			padding-left: 1rem * core_font($i - 27);
+		}
+		.pad_#{$i}  {
+			padding: 1rem * core_font($i - 27);
+		}
+		
+		.mar_t#{$i}  {
+			margin-top: 1rem * core_font($i - 27);
+		}
+		.mar_r#{$i}  {
+			margin-right: 1rem * core_font($i - 27);
+		}
+		.mar_b#{$i}  {
+			margin-bottom: 1rem * core_font($i - 27);
+		}
+		.mar_l#{$i}  {
+			margin-left: 1rem * core_font($i - 27);
+		}
+		.mar_#{$i}  {
+			margin: 1rem * core_font($i - 27);
+		}
+	}
+
+	@media (orientation: portrait) {
+	
+	
+	
+		@for $i from 1 through 50 {
+			  .mobilecorebox_#{$i} {
+				min-height: core_box($i - 27,$bodywidth) ;
+				width: 100%;
+			}
+		}
+		@for $i from 1 through 50 {
+			.mobilepad_t#{$i}  {
+				padding-top: 1rem * core_font($i - 27);
+			}
+			.mobilepad_r#{$i}  {
+				padding-right: 1rem * core_font($i - 27);
+			}
+			.mobilepad_d#{$i}  {
+				padding-down: 1rem * core_font($i - 27);
+			}
+			.mobilepad_l#{$i}  {
+				padding-left: 1rem * core_font($i - 27);
+			}
+			.mobilepad_#{$i}  {
+				padding: 1rem * core_font($i - 27);
+			}
+			
+			.mobilemar_t#{$i}  {
+				margin-top: 1rem * core_font($i - 27);
+			}
+			.mobilemar_r#{$i}  {
+				margin-right: 1rem * core_font($i - 27);
+			}
+			.mobilemar_d#{$i}  {
+				margin-down: 1rem * core_font($i - 27);
+			}
+			.mobilemar_l#{$i}  {
+				margin-left: 1rem * core_font($i - 27);
+			}
+			.mobilemar_#{$i}  {
+				margin: 1rem * core_font($i - 27);
+			}
+		}
+		@for $i from 1 through 10 {
+		  .mob_#{100 / $i} > * {
+			flex-basis: 100% / $i;
+			flex-wrap: wrap;
+		  }
+		}
+		
+		.mob_100 {
+			flex-basis: 100%;
+			flex-wrap: wrap;
+		}
+		.ratio_0 {
+			min-height: body_width(2,$bodywidth) * core_font(1);
+			// transform: scale(1 - core(3));
+   
+		}
+	}
+
+	.row {
+		display:flex;
+		flex-direction: row;
+		box-sizing: border-box;
+	}
+
+	.col {
+		display:flex;
+		flex-direction: column;
+		box-sizing: border-box;
+	}
+
+	.center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+	.start {
+		justify-content: flex-start;
+	}
+
+	.end {
+		justify-content: flex-end;
+	}
+
+	.tend {
+		text-align: right;
+	}
+	.items_start {
+		align-items: flex-start;
+	}
+
+	.items_center {
+		align-items: center;
+	}
+
+	.items_end {
+		align-items: flex-end;
+	}
+
+	.space_evenly {
+		justify-content: space-evenly;
+	}
+
+	.space_around {
+		justify-content: space-around;
+	}
+
+	.space_between {
+		justify-content: space-between;
+	}
+
+	.wrap {
+		flex-wrap: wrap;
+	}
+
+	.tcenter  {
+		text-align:center;
+	}
+	
+	.tjust  {
+		text-align:justify;
+	}
+
+	body {
+		width: body_width(1,$bodywidth);
+		margin: auto;
+		background: white;
+		min-height: 100vh;
+		font-family: 'Poppins';
+		font-weight: 400;
+	}
+	
+	.nav {
+		position: fixed;
+		width: body_width(1,$bodywidth);
+	}
+
+	html {
+		// background: url(../res/patterns/pattern0.jpg);
+		background: rgb(30,30,30);
+		background-size: 1rem * core_font(19);
+	}
+	
+	.relative {
+		position: relative;
+	}
+	.absolute {
+		position: absolute;
+		left:0;
+		top:0;
+	}
+	.allsize {
+		height: 100%;
+		width: 100%;
+	}
+
+	// $maskedicons: ("heart",url(../res/svg/box/heart.svg)),("search", url(../res/svg/box/search.svg));
+	$back-colors: ("0",#F9F9F9),("1", #008000),("2", #FFFFFF),("3", rgba(56, 56, 56, .04)), ("4",#FDE07B), ("5",#FFDC63), ("6",#C4C4C4), ("7",#FEE580), ("8",rgba(254, 229, 128, .14)),("mask_pink", #E490B7), ;
+	$fore-colors: ("0",#008000),("1", #008000),("2", #E490B7), ("4",rgba(56, 56, 56, .24)) , ("6",rgba(0,0,15,.34)), ("5",#383838), ("7",rgba(56, 56, 56, .94)) , ("8",rgba(56, 56, 56, .24));
+	// $recipes-pick: ("a",url(../res/pic/recipes_pic/a.jpg)),("b",url(../res/pic/recipes_pic/b.jpg)),("c",url(../res/pic/recipes_pic/c.jpg)),
+	// ("d",url(../res/pic/recipes_pic/d.jpg)),("e",url(../res/pic/recipes_pic/e.jpg)),("f",url(../res/pic/recipes_pic/f.jpg)),
+	// ("g",url(../res/pic/recipes_pic/g.jpg)),("h",url(../res/pic/recipes_pic/h.jpg)),("i",url(../res/pic/recipes_pic/i.jpg)),
+	// ("j",url(../res/pic/recipes_pic/j.jpg)),("k",url(../res/pic/recipes_pic/k.jpg)),("l",url(../res/pic/recipes_pic/l.jpg)),
+	// ("m",url(../res/pic/recipes_pic/m.jpg)),("n",url(../res/pic/recipes_pic/n.jpg)),("o",url(../res/pic/recipes_pic/o.jpg)),
+	// ("p",url(../res/pic/recipes_pic/p.jpg));
+	$hover-msg: ("more","Combine 2 cups bread flour.\a\a Shape the dough into a ball. \a\a...\a\a 7 Steps \a Click for more details"),("more_1","Click for more details");
+	$hover-msg-mobile: ("more","Tap again for more details"),("more_1","Click for more details");
+	
+	
+
+	@each $msg in $hover-msg {
+		&.msg_#{nth($msg,1)} {
+			&::after {
+				font-size: 1rem;	
+				content: nth($msg,2);
+				width: calc(100% + 1px);
+				height: calc(100% + 1px);
+				position: absolute;
+				background-color:rgba(250,250,250,.14);
+				background-color:#FFDC63;
+				opacity:0;
+				text-align:center;
+				justify-content:center;
+				align-items: center;
+				display: flex;
+				will-change: opacity;
+				transition: opacity 100ms;
+				font-weight: 600;
+				white-space: pre-wrap;
+				color: #383838;
+				box-sizing: border-box;
+				padding: 0 1rem * core_font(1);
+			
+				
+			}
+			
+			&:hover {
+				&::after { 
+					opacity: .86;
+				}
+				
+			}
+		}
+	}
+	
+	@media screen and (orientation: portrait) {
+		@each $msg in $hover-msg-mobile {
+			&.msg_#{nth($msg,1)} {
+				&::after {
+					content: nth($msg,2);
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					background-color:#FFDC63;
+					opacity:0;
+					text-align:center;
+					justify-content:center;
+					align-items: center;
+					display: flex;
+					will-change: opacity;
+					transition: opacity 100ms;
+					font-weight: 700;
+					white-space: pre-wrap;
+					color: #383838;
+					box-sizing: border-box;
+					padding: 0 1rem * core_font(1);
+				}
+				
+				&:hover {
+					&::after { 
+						opacity: .86;
+					}
+					
+				}
+			}
+		}
+	}
+	
+	
+	// @each $icon in $maskedicons {
+	// 	&.maskicon_#{nth($icon,1)} {
+	// 	  mask-image: nth($icon,2);
+	// 	  min-width: 1rem * core_font(4);
+	// 	  max-width: 1rem * core_font(4);
+	// 	  min-height: 1rem * core_font(4);
+	// 	  mask-size: 1rem * core_font(4);
+	// 	  background-color: #383838;
+	// 	  mask-repeat: no-repeat;
+	// 	  mask-position: center;
+		
+	// 	}
+	// }
+	
+	@each $color in $back-colors {
+		&.back_#{nth($color,1)} {
+		  background-color: nth($color,2);
+		}
+	}
+	
+	@each $color in $back-colors {
+		input[type=checkbox]:checked.upback_#{nth($color,1)} {
+			background-color: nth($color,2);
+			transition: background-color 100ms, transform 100ms;
+			animation-timing-function: cubic-bezier(.01,1.74,.79,1.65);
+			
+		}
+	}
+
+	@each $color in $fore-colors {
+		&.fore_#{nth($color,1)} {
+		  color: nth($color,2);
+		}
+	}
+	
+	// @each $pick in $recipes-pick {
+	// 	&.recipes_pic_#{nth($pick,1)} {
+	// 	  background: nth($pick,2);
+	// 	}
+	// }
+	
+	.animated_background_color {
+		transition: background-color 100ms, transform 100ms;
+		animation-timing-function: cubic-bezier(.01,1.74,.79,1.65);
+		transform: scale(1);
+	}
+	
+	input[type=checkbox] { 
+		appearance: none;
+		will-change: background-color;
+	}
+	
+}
+
+@media (orientation: portrait) {
+	@include app(100vw, 1);
+	
+	.mobilehide {
+		display:none !important;
+	}
+	
+}
+
+@media (orientation: landscape) { 
+	@include app(100vw  * 0.7091412742382274,0.7091412742382274);
+	
+
+	
+	input[type=checkbox]:hover {
+		border: 1px solid red;
+		
+	}
+	
+	.btn:hover {
+		cursor: pointer;
+	}
+	
+	html {
+	    color: rgba(0,0,0,.94);
+	}
+}
