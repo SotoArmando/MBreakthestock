@@ -27,7 +27,7 @@ class App extends React.Component {
   fetchappCrypto() {
     
     const { addnewsymbol, fetchfinnhub } = this.props;
-    fetchfinnhub({ "fetchCrypto": + new Date() })
+    fetchfinnhub({ "timestamp": + new Date() },"fetchCrypto")
     fetchCrypto().then(d => {
       
       d.forEach(e => {
@@ -39,7 +39,7 @@ class App extends React.Component {
 
   fetchappForex() {
     const { addnewsymbol, fetchfinnhub } = this.props;
-    fetchfinnhub({ "fetchForex": + new Date() })
+    fetchfinnhub({ "timestamp": + new Date() },"fetchForex")
     fetchForex().then(d => {
       d.forEach(e => {
         addnewsymbol({ ...e, timestamp: (+ new Date()), market: "Forex" })
@@ -53,14 +53,15 @@ class App extends React.Component {
 
     const { finnhub, symbols } = this.props;
     const { onRequest } = this.state;
-    
+
     if (!onRequest) {
       
       this.setState({ ...this.state, data: [], data1: [], onRequest: !onRequest })
-
+ 
       if (finnhub.hasOwnProperty("fetchCrypto")) {
-        
-        if ((+new Date) - finnhub["fetchCrypto"]["timestamp"] > 60000) {
+        debugger;
+        console.log((+new Date) - finnhub["fetchCrypto"]["timestamp"])
+        if ((+new Date) - finnhub["fetchCrypto"]["timestamp"] > 160000) {
           this.fetchappCrypto();
         } else {
           this.setState({ ...this.state, data1: symbols.filter(e => e.market === "Crypto") })
@@ -68,14 +69,14 @@ class App extends React.Component {
       } else { this.fetchappCrypto(); }
 
       if (finnhub.hasOwnProperty("fetchForex")) {
-        if ((+new Date) - finnhub["fetchForex"]["timestamp"] > 60000) {
+        console.log((+new Date) - finnhub["fetchForex"]["timestamp"])
+        if ((+new Date) - finnhub["fetchForex"]["timestamp"] > 160000) {
           this.fetchappForex();
         } else {
-          this.setState({ ...this.state, data: symbols.filter(e => e.market === "Forex") })
+          this.setState({ ...this.state, data: symbols.filter(e => e.market === "Forex"), data1: symbols.filter(e => e.market === "Crypto") })
         }
-      } else {
-        this.fetchappForex();
-      }
+      } else { this.fetchappForex(); }
+
     }
   }
 
@@ -90,16 +91,17 @@ class App extends React.Component {
   render() {
     const { data, data1 } = this.state;
     const bodywidth = document.querySelector('body').getBoundingClientRect().width;
-    let op_1_width = parseInt(bodywidth / convertRemToPixels(15));
+    let op_1_width = parseInt(bodywidth / convertRemToPixels(19));
     op_1_width = bodywidth / op_1_width;
 
+    debugger;
     return (
       <div className="col relative">
         <Nav title="Armando" titleback="BackArmando" />
 
         <div className="corebox_8 mobilecorebox_16" />
 
-        <div className="corebox_7 f_1 f600 pad_l20">Forex</div>
+        <div className="corebox_9 row items_center f_2 f600 pad_l24">Forex</div>
 
         <div className="row o_3 wrap">
           {(data.length === 0) ? 'Loading' : data.slice(0, 10).map(e =>
@@ -108,7 +110,7 @@ class App extends React.Component {
           }
 
         </div>
-        <div className="corebox_7 f_1 f600 pad_l20">Crypto</div>
+        <div className="corebox_9 row items_center f_2 f600 pad_l24">Crypto</div>
 
         <div className="row o_3 wrap">
           {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
@@ -131,7 +133,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   addnewsymbol: symbol => dispatch({ type: 'symbol/add', symbol }),
-  fetchfinnhub: finnhub => dispatch({ type: 'finnhub/fetch', finnhub }),
+  fetchfinnhub: (finnhub,key) => dispatch({ type: 'finnhub/fetch', finnhub, key }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -17,11 +17,12 @@ async function fetchForexCandles(symbol) {
     const from = parseInt(+ date / 1e3);
     const to = parseInt(+ new Date() / 1e3);
 
-    const response = await fetch('https://finnhub.io/api/v1/forex/candle?symbol='+symbol+'&resolution=1&from='+from+'&to='+to+'&token=sandbox_c01h39v48v6r07iq7j70');
+    const response = await fetch('https://finnhub.io/api/v1/forex/candle?symbol='+symbol+'&resolution=D&from='+from+'&to='+to+'&token=sandbox_c01h39v48v6r07iq7j70');
     const data = await response.json();
 
     if (data.hasOwnProperty("c")){
-        return data.c[0];
+        console.log(data.c[data.c.length-1],data.c[0])
+        return [data.c[0], (data.c[data.c.length-1] / data.c[0]).toString().substring(0,5) ];
     } else {
         return 'No data';
     }
@@ -33,12 +34,12 @@ async function fetchCryptoCandles(symbol) {
     const from = parseInt(+ date / 1e3);
     const to = parseInt(+ new Date() / 1e3);
 
-    const response = await fetch('https://finnhub.io/api/v1/crypto/candle?symbol='+symbol+'&resolution=1&from='+from+'&to='+to+'&token=sandbox_c01h39v48v6r07iq7j70');
+    const response = await fetch('https://finnhub.io/api/v1/crypto/candle?symbol='+symbol+'&resolution=D&from='+from+'&to='+to+'&token=sandbox_c01h39v48v6r07iq7j70');
     const data = await response.json();
-  
+
     if (data.hasOwnProperty("c")){
-        
-        return data.c[0];
+        console.log(data.c[data.c.length-1],data.c[0])
+        return [data.c[0], (data.c[data.c.length-1] / data.c[0]).toString().substring(0,5) ];
     } else {
         return 'No data';
     }
