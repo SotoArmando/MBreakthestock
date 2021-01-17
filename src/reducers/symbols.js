@@ -1,9 +1,9 @@
-export default function symbols(state = {}, action) {
-    const {toDo} = action;
+export default function symbols(state = [], action) {
+    const {symbol} = action;
     switch (action.type) {
-      case 'add': 
-        return {...state,...toDo}
+      case 'symbol/add':
+        return [...state, {...symbol, id: state.length}];
       default:
-        return state
+        return state;
     }
   }

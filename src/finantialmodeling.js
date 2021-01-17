@@ -1,11 +1,11 @@
 
-async function fetchCrypto() {
+async function fetchForex() {
     const response = await fetch("https://finnhub.io/api/v1/crypto/symbol?exchange=oanda&token=sandbox_c01h39v48v6r07iq7j70");
     const data = await response.json();
     return data;
 }
 
-async function fetchForex() {
+async function fetchCrypto() {
     const response = await fetch("https://finnhub.io/api/v1/crypto/symbol?exchange=binance&token=sandbox_c01h39v48v6r07iq7j70");
     const data = await response.json();
     return data;
