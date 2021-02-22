@@ -27,57 +27,34 @@ class App extends React.Component {
       data2: [],
       data3: [],
       onRequest: false,
-      isScrollCero: (document.body.getBoundingClientRect().y < 0),
+      isScrollCero: true,
     }
 
     this.handleUnload = this.handleUnload.bind(this);
   }
 
   fetchappCrypto() {
-    const { addnewsymbol, fetchfinnhub } = this.props;
-    fetchfinnhub({ "timestamp": + new Date() }, "fetchCrypto")
     fetchCrypto().then(d => {
-
-      d.forEach(e => {
-        addnewsymbol({ ...e, timestamp: (+ new Date()), market: "Crypto" }, e.symbol)
-      })
       this.setState({ ...this.state, data1: d });
-      this.handleUnload();
     });
   }
 
   fetchappForex() {
-    const { addnewsymbol, fetchfinnhub } = this.props;
-    fetchfinnhub({ "timestamp": + new Date() }, "fetchForex")
     fetchForex().then(d => {
-      d.forEach(e => {
-        addnewsymbol({ ...e, timestamp: (+ new Date()), market: "Forex" }, e.symbol)
-      })
       this.setState({ ...this.state, data: d });
-      this.handleUnload();
     });
   }
 
   fetchappMarketnews() {
-    const { addnews, fetchfinnhub } = this.props;
-    fetchfinnhub({ "timestamp": + new Date() }, "fetchMarketnews")
     fetchMarketnews().then(d => {
-      d.forEach(e => {
-        addnews({ ...e, timestamp: (+ new Date()) })
-      })
+      debugger;
       this.setState({ ...this.state, data2: d });
-      this.handleUnload();
     });
   }
 
   fetchappEconomicCalendar() {
-    const { bulkevents, fetchfinnhub } = this.props;
-    fetchfinnhub({ "timestamp": + new Date() }, "fetchEconomicCalendar")
     fetchEconomicCalendar().then(d => {
-
-      bulkevents(d);
       this.setState({ ...this.state, data3: d });
-      this.handleUnload();
     });
   }
 
@@ -101,16 +78,7 @@ class App extends React.Component {
         "fetchEconomicCalendar": { fetch: () => this.fetchappEconomicCalendar(), d: events, k: "data3" }
       }
 
-      for (const [key, value] of Object.entries(tasks)) {
-        if (finnhub.hasOwnProperty(key)) {
-          console.log((+new Date) - finnhub[key]["timestamp"])
-          if ((+new Date) - finnhub[key]["timestamp"] > 160000) {
-            value.fetch();
-          } else {
-            next_state = { ...next_state, [value.k]: value.d }
-          }
-        } else { value.fetch(); }
-      }
+      for (const [key, value] of Object.entries(tasks)) value.fetch();
 
       this.setState(next_state);
     }
@@ -123,9 +91,9 @@ class App extends React.Component {
 
       let observer = new IntersectionObserver((entries => {
           const { isScrollCero } = this.state;
-          console.log(isScrollCero)
-          this.setState({ ...this.state, isScrollCero: !isScrollCero });
-          
+          console.log(entries[0].boundingClientRect)
+          this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top > (-1 * entries[0].boundingClientRect.height) });
+
       }).bind(this))
 
       observer.observe(document.querySelector("#topanchor"));
@@ -149,33 +117,34 @@ class App extends React.Component {
     op_3_width = bodywidth / (op_3_width < 1 ? 1 : op_3_width);
 
     return (
-      <div id="doc" className="col back_2">
+      <div id="doc" className="col back_15">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero}/>
 
         <div id="topanchor" className="corebox_10 mobilecorebox_16" />
          
-  
-        <div className="row corebox_10 mobilecorebox_16 start fore_4 pad_r24" style={{opacity: isScrollCero ? 1 : 0 }}>
+
+
+        <div className="row corebox_10 mobilecorebox_16 start fore_4 pad_r24" style={{opacity: isScrollCero ? 1 : 0, willChange:"opacity"}}>
           <div className="f_2 corebox_x10 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_7 f500 start items_center mobilepad_l24">HOME</div></div>
           <div className="f_2 corebox_x10 mobilecorebox_x15 center f500   btn hover ls_25">UI<div className="to_hover fore_7 f500 center">UI</div></div>
           <div className="f_2 corebox_x10 mobilecorebox_x15  center f500   btn hover ls_25">UX<div className="to_hover fore_7 f500 center">UX</div></div>
           <div className="f_2 corebox_x15 mobilecorebox_x22 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_7 f500 center">TYPOGRAPHY</div></div>
         </div>
-
+        
         <div className="col corebox_21  mobilecorebox_23 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_d34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
           <span className="fore_7 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
           <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
         </div>
 
-        <Select name="Market Calendar" value="General" options={[0, 0, 0]} />
+        <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
 
-        <div className="row wrap">
-          {
-            (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, bodywidth / op_1_width).map(e =>
-              <Calendarevent {...e[1]} basis={op_1_width} />
-            )
-          }
-        </div>
+<div className="row wrap back_grad_9">
+  {
+    (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, bodywidth / op_1_width).map(e =>
+      <Calendarevent {...e[1]} basis={op_1_width} />
+    )
+  }
+</div>
 
         <Select name="Forex" value="Oanda" options={[0, 0, 0]} openable={true} />
 

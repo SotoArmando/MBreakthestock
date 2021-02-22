@@ -1,7 +1,7 @@
 import { toggleFilter } from '../Queryselector'
 
 export default function Nav({ title, titleback, isScrollCero }) {
-    return <div className={"row center corebox_10 mobilecorebox_16  nav"+ (isScrollCero ? "": " back_2")}>
+    return <div className={"row center corebox_10 mobilecorebox_16  nav"+ (isScrollCero ? " ": " back_2")}>
         <div className="row space_between center bodywidth ">
             <div className="row start items_center allsize">
                 <div className={"row corebox_10 mobilecorebox_16 start fore_4 pad_r24 sec_nav" + (isScrollCero ? "": " active")} style={{ width: "unset" }}>
