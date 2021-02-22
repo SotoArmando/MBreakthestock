@@ -27,6 +27,7 @@ class App extends React.Component {
       data2: [],
       data3: [],
       onRequest: false,
+      isScrollCero: (document.body.getBoundingClientRect().y < 0),
     }
 
     this.handleUnload = this.handleUnload.bind(this);
@@ -114,6 +115,22 @@ class App extends React.Component {
       this.setState(next_state);
     }
 
+    if (
+      "IntersectionObserver" in window &&
+      "IntersectionObserverEntry" in window &&
+      "intersectionRatio" in window.IntersectionObserverEntry.prototype
+    ) {
+
+      let observer = new IntersectionObserver((entries => {
+          const { isScrollCero } = this.state;
+          console.log(isScrollCero)
+          this.setState({ ...this.state, isScrollCero: !isScrollCero });
+          
+      }).bind(this))
+
+      observer.observe(document.querySelector("#topanchor"));
+    }
+
   }
 
   handleUnload(e) {
@@ -122,7 +139,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, data1, data2, data3 } = this.state;
+    const { data, data1, data2, data3, isScrollCero } = this.state;
     const bodywidth = document.querySelector('body').getBoundingClientRect().width;
     let op_1_width = parseInt(bodywidth / convertRemToPixels(16));
     let op_2_width = parseInt(bodywidth / convertRemToPixels(20));
@@ -133,19 +150,21 @@ class App extends React.Component {
 
     return (
       <div id="doc" className="col back_2">
-        <Nav title="Brainspace" titleback="" />
-        
-        <div className="corebox_10 mobilecorebox_16" />
-        <div className="row corebox_9 mobilecorebox_16 start fore_4 pad_r24">
-          <div className="f_2 corebox_x10 mobilecorebox_x13 start items_center f500 btn hover ls_25">HOME<div className="to_hover fore_7 f500 start items_center">HOME</div></div>
-          <div className="f_2 corebox_x10 mobilecorebox_x13 center f500   btn hover ls_25">UI<div className="to_hover fore_7 f500 center">UI</div></div>
-          <div className="f_2 corebox_x10 mobilecorebox_x13  center f500   btn hover ls_25">UX<div className="to_hover fore_7 f500 center">UX</div></div>
-          <div className="f_2 corebox_x15 mobilecorebox_x20 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_7 f500 center">TYPOGRAPHY</div></div>
-      </div>
+        <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero}/>
+
+        <div id="topanchor" className="corebox_10 mobilecorebox_16" />
+         
+  
+        <div className="row corebox_10 mobilecorebox_16 start fore_4 pad_r24" style={{opacity: isScrollCero ? 1 : 0 }}>
+          <div className="f_2 corebox_x10 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_7 f500 start items_center mobilepad_l24">HOME</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x15 center f500   btn hover ls_25">UI<div className="to_hover fore_7 f500 center">UI</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x15  center f500   btn hover ls_25">UX<div className="to_hover fore_7 f500 center">UX</div></div>
+          <div className="f_2 corebox_x15 mobilecorebox_x22 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_7 f500 center">TYPOGRAPHY</div></div>
+        </div>
 
         <div className="col corebox_21  mobilecorebox_23 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_d34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
-            <span className="fore_7 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br/> a Sample Project.</span>
-            <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
+          <span className="fore_7 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
+          <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
         </div>
 
         <Select name="Market Calendar" value="General" options={[0, 0, 0]} />
@@ -199,6 +218,7 @@ const mapStateToProps = (state) => {
     symbols, finnhub, news, events
   }
 };
+
 
 const mapDispatchToProps = dispatch => ({
   addnewsymbol: (symbol, key) => dispatch({ type: 'symbol/add', symbol, key }),

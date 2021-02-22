@@ -33,7 +33,7 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fe
             let key = "fetchCryptoCandles_" + symbol
 
             if (finnhub.hasOwnProperty(key)) {
-                console.log(finnhub.hasOwnProperty(key), finnhub, {description, displaySymbol, symbol, basis, isCrypto, fetchfinnhub, finnhub, },(+new Date) - finnhub[key]["timestamp"])
+                // console.log(finnhub.hasOwnProperty(key), finnhub, {description, displaySymbol, symbol, basis, isCrypto, fetchfinnhub, finnhub, },(+new Date) - finnhub[key]["timestamp"])
                 if ((+new Date) - finnhub[key]["timestamp"] > 10000 * (16) || finnhub[key]['e'][0] === "No data") {
                     Fetchcryptocandles(symbol, key)
                 } else {
@@ -47,7 +47,7 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fe
             let key = "fetchForexCandles_" + symbol
 
             if (finnhub.hasOwnProperty(key)) {
-                console.log(finnhub.hasOwnProperty(key), finnhub, {description, displaySymbol, symbol, basis, isCrypto, fetchfinnhub, finnhub, },(+new Date) - finnhub[key]["timestamp"])
+                // console.log(finnhub.hasOwnProperty(key), finnhub, {description, displaySymbol, symbol, basis, isCrypto, fetchfinnhub, finnhub, },(+new Date) - finnhub[key]["timestamp"])
                 if ((+new Date) - finnhub[key]["timestamp"] > 10000 * (16) || finnhub[key]['e'][0] === "No data") {
                     Fetchforexcandles(symbol, key)
                 } else {

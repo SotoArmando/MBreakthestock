@@ -210,6 +210,16 @@
 		}
 	}
 
+	.sec_nav  {
+		transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		// transition: opacity 300ms;
+		opacity: 0;
+		
+		&.active {
+			opacity: 1;
+		}
+	}
+
 	.row {
 		display:flex;
 		flex-direction: row;
@@ -603,4 +613,14 @@
 	    color: rgba(0,0,0,.94);
 		font-size: 0.7091412742382275rem;
 	}
+
+	// #doc:not([data-scroll='0']) {
+	// 	transition: color 300ms;
+	// 	background: red;
+	// }
+
+	// #doc[data-scroll="0"] {
+	// 	transition: color 300ms;
+	// 	background: blue !important;
+	// }
 }
