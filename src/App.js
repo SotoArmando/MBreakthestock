@@ -1,6 +1,8 @@
 
 import './App.scss';
 import './css/poppins/poppins.css';
+import './css/castoro/castoro.css';
+import './css/lora/lora.css';
 
 import Nav from './components/Nav';
 import React from 'react';
@@ -68,11 +70,10 @@ class App extends React.Component {
   }
 
   fetchappEconomicCalendar() {
-    
     const { bulkevents, fetchfinnhub } = this.props;
     fetchfinnhub({ "timestamp": + new Date() }, "fetchEconomicCalendar")
     fetchEconomicCalendar().then(d => {
-      
+
       bulkevents(d);
       this.setState({ ...this.state, data3: d });
       this.handleUnload();
@@ -93,10 +94,10 @@ class App extends React.Component {
 
       // fetch is method used when new data is required. d is data used when data was previously saved. k is the key using x data in component state.
       let tasks = {
-        "fetchForex": { fetch: () => this.fetchappForex(), d: Object.values(symbols).filter(e => e.market === "Forex"), k: "data"},
-        "fetchCrypto":  { fetch: () => this.fetchappCrypto(), d: Object.values(symbols).filter(e => e.market === "Crypto"), k: "data1"},
-        "fetchMarketnews": { fetch: () => this.fetchappMarketnews(), d: news, k: "data2"},
-        "fetchEconomicCalendar": { fetch: () => this.fetchappEconomicCalendar(), d: events, k: "data3"}
+        "fetchForex": { fetch: () => this.fetchappForex(), d: Object.values(symbols).filter(e => e.market === "Forex"), k: "data" },
+        "fetchCrypto": { fetch: () => this.fetchappCrypto(), d: Object.values(symbols).filter(e => e.market === "Crypto"), k: "data1" },
+        "fetchMarketnews": { fetch: () => this.fetchappMarketnews(), d: news, k: "data2" },
+        "fetchEconomicCalendar": { fetch: () => this.fetchappEconomicCalendar(), d: events, k: "data3" }
       }
 
       for (const [key, value] of Object.entries(tasks)) {
@@ -112,7 +113,7 @@ class App extends React.Component {
 
       this.setState(next_state);
     }
-    
+
   }
 
   handleUnload(e) {
@@ -123,65 +124,70 @@ class App extends React.Component {
   render() {
     const { data, data1, data2, data3 } = this.state;
     const bodywidth = document.querySelector('body').getBoundingClientRect().width;
-    let op_1_width = parseInt(bodywidth / convertRemToPixels(19));
+    let op_1_width = parseInt(bodywidth / convertRemToPixels(16));
+    let op_2_width = parseInt(bodywidth / convertRemToPixels(20));
     let op_3_width = parseInt(bodywidth / convertRemToPixels(11));
     op_1_width = bodywidth / op_1_width;
+    op_2_width = bodywidth / op_2_width;
     op_3_width = bodywidth / (op_3_width < 1 ? 1 : op_3_width);
+
     return (
-      <div className="col relative back_9">
-        <Nav title="Breakthestock" titleback="" />
-        <Filter />
+      <div id="doc" className="col back_2">
+        <Nav title="Brainspace" titleback="" />
+        
+        <div className="corebox_10 mobilecorebox_16" />
+        <div className="row corebox_9 mobilecorebox_16 start fore_4 pad_r24">
+          <div className="f_2 corebox_x10 mobilecorebox_x13 start items_center f500 btn hover ls_25">HOME<div className="to_hover fore_7 f500 start items_center">HOME</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x13 center f500   btn hover ls_25">UI<div className="to_hover fore_7 f500 center">UI</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x13  center f500   btn hover ls_25">UX<div className="to_hover fore_7 f500 center">UX</div></div>
+          <div className="f_2 corebox_x15 mobilecorebox_x20 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_7 f500 center">TYPOGRAPHY</div></div>
+      </div>
 
-        <div className="corebox_9 mobilecorebox_16" />
+        <div className="col corebox_21  mobilecorebox_23 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_d34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
+            <span className="fore_7 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br/> a Sample Project.</span>
+            <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
+        </div>
 
-        <Select name="Market Calendar" value="General" options={[0,0,0]}/>
+        <Select name="Market Calendar" value="General" options={[0, 0, 0]} />
 
-        <div className="row o_3 wrap">
+        <div className="row wrap">
           {
-          (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, 6).map(e =>
-            <Calendarevent {...e[1]} basis={op_3_width} />
-          )
+            (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, bodywidth / op_1_width).map(e =>
+              <Calendarevent {...e[1]} basis={op_1_width} />
+            )
           }
         </div>
 
-        <Select name="News" value="General" options={[0,0,0]}/>
+        <Select name="Forex" value="Oanda" options={[0, 0, 0]} openable={true} />
 
-        <div className="row o_3 wrap">
-          {(data2.length === 0) ? 'Loading' : data2.slice(0, 6).map(e =>
-            <Visitedmarketnews {...e} basis={op_1_width} />
-          )
-          }
-        </div>
-        <div className="corebox_11 row center">
-          {/* <span className="corebox_7 borderradius_25 fore_9 corebox_x19 text_center center f600 back_green btn">Full featured news<span className="maskicon_launch mar_l21 back_10"/></span> */}
-        </div>
-
-        <Select name="Forex" value="Oanda" options={[0,0,0]}/>
-  
-        <div className="row o_3 wrap">
+        <div className="row wrap">
           {(data.length === 0) ? 'Loading' : data.slice(0, 10).map(e =>
             <Visitedsymbol {...e} basis={op_1_width} isCrypto={false} />
           )
           }
 
         </div>
-        <div className="corebox_11 row center">
-          {/* <span className="corebox_7 borderradius_25 fore_9 corebox_x19 text_center center f600 back_green btn">Full featured forex symbols<span className="maskicon_launch mar_l21 back_10"/></span> */}
-        </div>
-        <Select name="Crypto" value="Binance" options={[0,0,0]}/>
 
-        <div className="row o_3 wrap">
+        <Select name="Crypto" value="Binance" options={[0, 0, 0]} />
+
+        <div className="row wrap">
           {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
             <Visitedsymbol {...e} basis={op_1_width} isCrypto={true} />
           )
           }
 
         </div>
-        <div className="corebox_11 row center">
-          {/* <span className="corebox_7 borderradius_25 fore_9 corebox_x19 text_center center f600 back_green btn">Full featured crypto symbols<span className="maskicon_launch mar_l21 back_10"/></span> */}
+        <div className="corebox_7" />
+
+        <Select name="Today" value="General" options={[0, 0, 0]} openable={true} />
+
+        <div className="row wrap">
+          {(data2.length === 0) ? 'Loading' : data2.slice(0, 4).map(e =>
+            <Visitedmarketnews {...e} basis={op_2_width} />
+          )
+          }
         </div>
 
-        <div className="corebox_24 back_8"></div>
       </div>
     );
   }
