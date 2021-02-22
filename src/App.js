@@ -92,7 +92,7 @@ class App extends React.Component {
       let observer = new IntersectionObserver((entries => {
           const { isScrollCero } = this.state;
           console.log(entries[0].boundingClientRect)
-          this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top > (-1 * entries[0].boundingClientRect.height) });
+          this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
 
       }).bind(this))
 

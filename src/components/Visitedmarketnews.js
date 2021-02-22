@@ -14,10 +14,10 @@ export default function Visitedmarketnews({category,datetime,headline,related,so
 
     
 
-    return <div className="col corebox_16 mobilecorebox_22 center items_start pad_l20 pad_r20  pad_b30 btn" style={{flexBasis:basis + 'px',maxWidth:basis + 'px'}}>
+    return <div className="col corebox_16 mobilecorebox_22 center items_start   pad_b30 mobilepad_l24 btn" style={{flexBasis:basis + 'px',maxWidth:basis + 'px'}}>
     <a className="allsize col   space_between borderradius_25 fore_4" target='_tab' href={url}>
         {/* <div  className="corebox_17 borderradius_top_25" style={{background:"url("+image+")",width:"100%",backgroundPosition:'center', backgroundSize:'cover'}}  onLoad={loaded}/> */}
-        <div className="col pad_l23 pad_r24 pad_t24 pad_b23 ">
+        <div className="col    pad_b23 ">
             <div className="col start allwidth mar_b15">
                 <span className="f_0 fore_green f600 capitalize">{category}</span>
             </div>

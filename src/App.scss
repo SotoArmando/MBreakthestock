@@ -215,6 +215,7 @@
 		// transition: opacity 300ms;
 		will-change: opacity;
 		opacity: 0;
+		cursor: pointer !important;
 		
 		&.active {
 			opacity: 1;
@@ -347,16 +348,20 @@
 	}
 	$borders: ("0",rgb(230,230,230),1px),
 	("1",rgb(190,190,190),1rem * core(15)),
-	("2",rgb(69,208,156),1rem * core(15));
-	$maskedicons: ("back",url(./css/svg/arrow_back_ios-24px.svg)),
+	("2",rgb(69,208,156),1rem * core(15)),
+	("3",rgb(242.25,242.25,242.25),1rem * core(15));
+	$icons: ("back",url(./css/svg/arrow_back_ios-24px.svg)),
 	("search", url('./css/svg/search-24px\ \(1\).svg')),
 	("filter", url('./css/svg/filter_alt-24px.svg')),
-	("expand", url('./css/svg/expand_more-24px.svg')),
-	("launch", url('./css/svg/launch-24px.svg'))
+	("twitter", url('./css/svg/013-twitter-1.svg')),
+	("linkedin", url('./css/svg/031-linkedin.svg')),
+	("github", url('./css/svg/039-github.svg')),
+	("launch", url('./css/svg/launch-24px.svg')),
+	("icon", url('./css/svg/icon.svg')),
+	("icon", url('./css/svg/icon.svg'))
 	;
 
-	$icons: ("icon", url('./css/svg/icon.svg')), ("icon", url('./css/svg/icon.svg'))
-	;
+
 	$back-colors: ("0",#F9F9F9),
 	("1", #008000),
 	("2", #FFFFFF),
@@ -507,7 +512,7 @@
 		}
 	}
 	
-	@each $icon in $maskedicons {
+	@each $icon in $icons {
 		&.maskicon_#{nth($icon,1)} {
 			mask-image: nth($icon,2);
 			min-width: 1rem * core_font(3);
@@ -528,6 +533,10 @@
 		}
 	}
 	@each $border in $borders {
+		&.border_t#{nth($border,1)} { 
+			border-top: nth($border,3) solid nth($border,2);
+		}
+		
 		&.border_#{nth($border,1)} {
 			border: nth($border,3) solid nth($border,2);
 
@@ -585,7 +594,7 @@
 	}
 
 	.btn:hover {
-		cursor: pointer;
+		cursor: pointer !important;
 	}
 	
 }
