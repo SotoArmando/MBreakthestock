@@ -71,6 +71,19 @@
 			min-height: core_box($i - 27,$bodywidth) ;
 			width: 100%;
 		}
+
+		.basis_#{$i} {
+			display: flex;
+			flex-wrap: wrap;
+
+			& > * {
+				
+				flex: 1 1 (1rem * core($i));
+				flex-grow: 1;
+			}
+			
+		}
+
 		.corebox_x#{$i} {
 			min-width: core_box($i - 27,$bodywidth) ;
 
@@ -146,7 +159,7 @@
 
 	@media (orientation: portrait),(max-width: 1000px)  {
 	
-		@for $i from 1 through 50 {
+		@for $i from 0 through 50 {
 			.f_m_#{$i} {
 				font-size: 1rem * core_font($i);
 			  }
@@ -399,7 +412,10 @@
 	("13",rgb(204,204,204)),
 	("11",rgb(47,47,47)),
 	("12",rgb(229.5,229.5,229.5)),
-	("13",rgb(204,204,204))
+	("13",rgb(204,204,204)),
+	("14",rgb(191.25,191.25,191.25)),
+	("15",rgb(191.25,191.25,191.25)),
+	("16",rgb(76.5,76.5,76.5))
 	;
 	// $recipes-pick: ("a",url(../res/pic/recipes_pic/a.jpg)),("b",url(../res/pic/recipes_pic/b.jpg)),("c",url(../res/pic/recipes_pic/c.jpg)),
 	// ("d",url(../res/pic/recipes_pic/d.jpg)),("e",url(../res/pic/recipes_pic/e.jpg)),("f",url(../res/pic/recipes_pic/f.jpg)),
@@ -437,6 +453,23 @@
 		 }
 	}
 	
+	&.hover_b {
+	
+
+			
+		& .to_hover_b {
+
+
+			opacity: 0;
+			transition: opacity 357ms;
+			transition-timing-function:cubic-bezier(0.075, 0.82, 0.165, 1);
+		}
+
+		&:hover > .to_hover_b {
+			opacity: 1;
+
+		 }
+	}
 
 	@each $msg in $hover-msg {
 		&.msg_#{nth($msg,1)} {
@@ -614,15 +647,24 @@
 	@include app(100vw, 1);
 	
 	.mobilehide {
-		display:none !important;
+		display: none;
+	}
+
+	html {
+		// font-size: 0.7091412742382275rem;
 	}
 	
 }
 
+
 @media (orientation: landscape) and (min-width: 1000px) { 
 	@include app(100vw  * 0.7091412742382274,0.7091412742382274);
 	
-
+	@media (-webkit-min-device-pixel-ratio: 1.125) {
+		html {
+			font-size: 0.7091412742382275rem;
+		}
+	}
 	
 	input[type=checkbox]:hover {
 		border: 1px solid red;
@@ -630,11 +672,8 @@
 	}
 	
 
+
 	
-	html {
-	    color: rgba(0,0,0,.94);
-		font-size: 0.7091412742382275rem;
-	}
 
 	// #doc:not([data-scroll='0']) {
 	// 	transition: color 300ms;
