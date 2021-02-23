@@ -47,7 +47,6 @@ class App extends React.Component {
 
   fetchappMarketnews() {
     fetchMarketnews().then(d => {
-      debugger;
       this.setState({ ...this.state, data2: d });
     });
   }
@@ -90,9 +89,9 @@ class App extends React.Component {
     ) {
 
       let observer = new IntersectionObserver((entries => {
-          const { isScrollCero } = this.state;
-          console.log(entries[0].boundingClientRect)
-          this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
+        const { isScrollCero } = this.state;
+        console.log(entries[0].boundingClientRect)
+        this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
 
       }).bind(this))
 
@@ -109,7 +108,7 @@ class App extends React.Component {
   render() {
     const { data, data1, data2, data3, isScrollCero } = this.state;
     const bodywidth = document.querySelector('body').getBoundingClientRect().width;
-    let op_1_width = parseInt(bodywidth / convertRemToPixels(16));
+    let op_1_width = parseInt(bodywidth / convertRemToPixels(14));
     let op_2_width = parseInt(bodywidth / convertRemToPixels(20));
     let op_3_width = parseInt(bodywidth / convertRemToPixels(11));
     op_1_width = bodywidth / op_1_width;
@@ -118,33 +117,33 @@ class App extends React.Component {
 
     return (
       <div id="doc" className="col back_15">
-        <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero}/>
+        <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
 
         <div id="topanchor" className="corebox_10 mobilecorebox_16" />
-         
 
 
-        <div className="row corebox_10 mobilecorebox_16 start fore_4 pad_r24" style={{opacity: isScrollCero ? 1 : 0, willChange:"opacity"}}>
-          <div className="f_2 corebox_x10 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_7 f500 start items_center mobilepad_l24">HOME</div></div>
-          <div className="f_2 corebox_x10 mobilecorebox_x15 center f500   btn hover ls_25">UI<div className="to_hover fore_7 f500 center">UI</div></div>
-          <div className="f_2 corebox_x10 mobilecorebox_x15  center f500   btn hover ls_25">UX<div className="to_hover fore_7 f500 center">UX</div></div>
-          <div className="f_2 corebox_x15 mobilecorebox_x22 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_7 f500 center">TYPOGRAPHY</div></div>
+
+        <div className="row corebox_10 mobilecorebox_16 start fore_12 pad_r24" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
+          <div className="f_2 corebox_x10 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x15 center f500   btn hover ls_25">UI<div className="to_hover fore_11 f500 center">UI</div></div>
+          <div className="f_2 corebox_x10 mobilecorebox_x15  center f500   btn hover ls_25">UX<div className="to_hover fore_11 f500 center">UX</div></div>
+          <div className="f_2 corebox_x15 mobilecorebox_x22 center f500  btn hover ls_25">TYPOGRAPHY<div className="to_hover fore_11 f500 center">TYPOGRAPHY</div></div>
         </div>
-        
+
         <div className="col corebox_21  mobilecorebox_23 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_d34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
-          <span className="fore_7 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
+          <span className="fore_11 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
           <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
         </div>
 
         <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
 
-<div className="row wrap back_grad_9">
-  {
-    (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, bodywidth / op_1_width).map(e =>
-      <Calendarevent {...e[1]} basis={op_1_width} />
-    )
-  }
-</div>
+        <div className="row wrap">
+          {
+            (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, bodywidth / op_1_width).map(e =>
+              <Calendarevent {...e[1]} basis={op_1_width} />
+            )
+          }
+        </div>
 
         <Select name="Forex" value="Oanda" options={[0, 0, 0]} openable={true} />
 
@@ -156,7 +155,7 @@ class App extends React.Component {
 
         </div>
 
-        <Select name="Crypto" value="Binance" options={[0, 0, 0]} />
+        <Select name="" value="Crypto Binance" options={[0, 0, 0]} />
 
         <div className="row wrap">
           {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
@@ -167,15 +166,15 @@ class App extends React.Component {
         </div>
         <div className="corebox_7" />
 
-        <Select name="Today" value="General" options={[0, 0, 0]} openable={true} />
+        <Select name="Recently" value="" options={[0, 0, 0]} openable={true} />
 
-        <div className="row wrap">
-          {(data2.length === 0) ? 'Loading' : data2.slice(0, 4).map(e =>
+        <div className="row wrap ">
+          {(data2.length === 0) ? 'Loading' : data2.slice(0, 12).map(e =>
             <Visitedmarketnews {...e} basis={op_2_width} />
           )
           }
         </div>
-
+        <div className="corebox_19"></div>
       </div>
     );
   }

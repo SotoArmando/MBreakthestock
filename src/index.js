@@ -16,32 +16,32 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
-      <div className="corebox_22 mobilecorebox_32 row wrap start f600 pad_t33  mobilepad_l28 mobilepad_t28">
-        <div className="col start items_start mobilecorebox_14" style={{ flexBasis: op_1_width }}>
+      <div className="corebox_22 mobilecorebox_32 row wrap start f600 pad_t33  mobilepad_l28 mobilepad_t28 back_grad_9">
+        <div className="col start items_start mobilecorebox_14 pad_l30" style={{ flexBasis: op_1_width }}>
           <span className="f_3 f600 ls_26 "><div className="svgicon_icon iconsize_32 mar_r20" />Brainspace</span>
         </div>
         <div className="col start  items_start  " style={{ flexBasis: op_1_width }}>
-          <div className="f_2 corebox_10">Footer Column</div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Latest Post<div className="to_hover fore_5">Latest Post</div></div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Popular Posts<div className="to_hover fore_5">Popular Posts</div></div>
+          <div className="f_2 corebox_10 fore_11" >Footer Column</div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Latest Post<div className="to_hover fore_11">Latest Post</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Popular Posts<div className="to_hover fore_11">Popular Posts</div></div>
         </div>
         <div className="col start  items_start " style={{ flexBasis: op_1_width }}>
-          <div className="f_2 corebox_10">Footer Column</div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">My Account<div className="to_hover fore_5">My Account</div></div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Register<div className="to_hover fore_5">Register</div></div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Sign In<div className="to_hover fore_5">Sign In</div></div>
+          <div className="f_2 corebox_10 fore_11">Footer Column</div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">My Account<div className="to_hover fore_11">My Account</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Register<div className="to_hover fore_11">Register</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Sign In<div className="to_hover fore_11">Sign In</div></div>
         </div>
         <div className="col start  items_start " style={{ flexBasis: op_1_width }}>
-          <div className="f_2 corebox_10">Footer Column</div>
+          <div className="f_2 corebox_10 fore_11">Footer Column</div>
 
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Privacy Policy<div className="to_hover fore_5">Privacy Policy</div></div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Terms of Use<div className="to_hover fore_5">Terms of Use</div></div>
-          <div className="f_1 ls_25 corebox_5 fore_4 btn hover">Contact Information<div className="to_hover fore_5">Contact Information</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Privacy Policy<div className="to_hover fore_11">Privacy Policy</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Terms of Use<div className="to_hover fore_11">Terms of Use</div></div>
+          <div className="f_1 ls_25 corebox_5 fore_12 btn hover">Contact Information<div className="to_hover fore_11">Contact Information</div></div>
 
         </div>
      
         <div className="corebox_17 col mobilecorebox_26 border_t3 center">
-          <div className="row center">
+          <div className="row mobilecorebox_20 center">
             <div className="corebox_x9 mobilecorebox_x15 row center">
               <div className="maskicon_linkedin  mobilecorebox_x14" />
             </div>
@@ -52,7 +52,7 @@ ReactDOM.render(
               <div className="maskicon_twitter  mobilecorebox_x14" />
             </div>
           </div>
-          <div className="tcenter f500 corebox_12 mobilecorebox_20 col center ls_25 fore_4">
+          <div className="tcenter f500 corebox_12 mobilecorebox_20 col center ls_25 fore_13 ">
             Sotoarmando Brainspace © Copyright 2021. All rights reserved.<br />
             With a commitment to technologies and practices exploration.
           </div>

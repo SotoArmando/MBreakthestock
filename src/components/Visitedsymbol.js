@@ -42,9 +42,9 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
 
     return (
         <div className="col corebox_11 mobilecorebox_20 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
-            <div className="allsize  col  pad_l26 pad_r26 pad_t27 borderradius_25">
+            <div className="allsize  col  pad_t27 borderradius_25">
                 <div className="row center space_between allwidth">
-                    <span className="f_1 f600">{displaySymbol}</span>
+                    <span className="f_1 f500 fore_6">{displaySymbol}</span>
                     {/* <span style={{ fontSize: "1rem" }} 
                             className={"pad_l20 pad_r20 borderradius_16 mar_r10 pad_t5 pad_b5 " 
                             + ((growth > 1) ? "fore_green" : "fore_red")}>{growth > 1 ? "" : ""} 
@@ -53,7 +53,7 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
                 <div className="row center space_between allwidth">
                     <span className="f500  mar_t15">
                         {bidAsk === 0 ? 'Loading' :
-                            <span className={"f_3 f600 " + ((growth > 1) ? "fore_green" : "fore_red")}>
+                            <span className={"f_2 ls_25 f600 fore_11" + ((growth > 1) ? "" : "")}>
 
                                 {mapNumbertoRead(bidAsk)}
                             </span>
