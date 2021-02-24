@@ -41,7 +41,7 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
     }
 
     return (
-        <div className="col corebox_11 mobilecorebox_20 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
+        <div className="col corebox_8 mobilecorebox_7 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
             <div className="allsize  col  pad_t27 borderradius_25">
                 <div className="row center space_between allwidth">
                     <span className="f_1 f500 fore_6">{displaySymbol}</span>

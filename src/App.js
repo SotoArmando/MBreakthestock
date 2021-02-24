@@ -88,10 +88,7 @@ class App extends React.Component {
     ) {
 
       let observer = new IntersectionObserver((entries => {
-        const { isScrollCero } = this.state;
-        console.log(entries[0].boundingClientRect)
         this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
-
       }).bind(this))
 
       observer.observe(document.querySelector("#topanchor"));
@@ -111,17 +108,27 @@ class App extends React.Component {
       <div id="doc" className="col back_15">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
 
-        <div id="topanchor" className="corebox_10 mobilecorebox_16" />
+        <div id="topanchor" className="corebox_6 mobilecorebox_4" />
 
 
 
-        <div className="row corebox_10 mobilecorebox_18 start fore_14 pad_r24" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
-          <div className="f_2 corebox_x10 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
+        <div className="row corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
+          <div className="row">
+            <div className="f_2 corebox_x5 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
+          </div>
+
+          <div className="row mobilepad_r24">
+            <input className="f_0 box corebox_x5  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
+            <div className="back_2 row center corebox_x2 ">
+              <div className="maskicon_search  back_11" />
+            </div>
+          </div>
+
         </div>
 
-        <div className="col corebox_23  mobilecorebox_24 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_d34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
+        <div className="col corebox_18 mobilecorebox_15 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_b34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
           <span className="fore_11 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
-          <span className=" pad_t24 f_3 f_m_1 ">The theme has amazing layouts, practical built-in features, great bones and lightning load speed. Download it now!</span>
+          <span className=" pad_t24 f_3 f_m_1 ">Flex those bones</span>
         </div>
 
         <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
@@ -129,7 +136,7 @@ class App extends React.Component {
         <div className="row wrap basis_42">
           {
             (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, 6).map(e =>
-              <Calendarevent {...e[1]}  />
+              <Calendarevent {...e[1]} />
             )
           }
         </div>
@@ -138,7 +145,7 @@ class App extends React.Component {
 
         <div className="row wrap basis_43">
           {(data.length === 0) ? 'Loading' : data.slice(0, 10).map(e =>
-            <Visitedsymbol {...e}  isCrypto={false} />
+            <Visitedsymbol {...e} isCrypto={false} />
           )
           }
 
@@ -148,7 +155,7 @@ class App extends React.Component {
 
         <div className="row wrap basis_43">
           {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
-            <Visitedsymbol {...e}  isCrypto={true} />
+            <Visitedsymbol {...e} isCrypto={true} />
           )
           }
 
@@ -159,11 +166,11 @@ class App extends React.Component {
 
         <div className="row wrap basis_45">
           {(data2.length === 0) ? 'Loading' : data2.slice(0, 12).map(e =>
-            <Visitedmarketnews {...e}  />
+            <Visitedmarketnews {...e} />
           )
           }
         </div>
-        <div className="corebox_19"></div>
+        <div className="corebox_10"></div>
       </div>
     );
   }

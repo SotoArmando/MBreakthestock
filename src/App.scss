@@ -64,13 +64,15 @@
 			background-size: 1rem * core_font($i - 27) !important;
 		}
 		.bidcorebox_#{$i} {
-			min-height: core_box($i - 27,$bodywidth) ;
-			min-width: core_box($i - 27,$bodywidth) ;
+			min-height: 3.6rem * core($i + 23);
+			min-width: 3.6rem * core($i + 23);
 		}
 		.corebox_#{$i} {
-			min-height: core_box($i - 27,$bodywidth) ;
+			min-height: 3.6rem * core($i + 23);
 			width: 100%;
 		}
+
+	
 
 		.basis_#{$i} {
 			display: flex;
@@ -84,10 +86,28 @@
 			
 		}
 
-		.corebox_x#{$i} {
-			min-width: core_box($i - 27,$bodywidth) ;
+		.corebox_x#{$i}:not(.box) {
+			min-width: 3.6rem * core($i + 23);
+		}	
+		
+		&.box.corebox_x#{$i} {
+			width: 54pt;
+			will-change: width;
+			transition: width 200ms;
 
+			&:active, &:focus {
+				width: 3.6rem * core($i + 23);
+			}
+
+		
 		}
+		@media (orientation: portrait) {
+			&.box.corebox_x#{$i} {
+				width: core_box($i - 27,$bodywidth) ;
+			}
+		}
+
+
 		.boxshadow_#{$i} {
 			box-shadow: 4px 4px 1rem *  core($i)   #eeeeee;
 
@@ -165,11 +185,11 @@
 			  }
 			  
 			.mobilecorebox_#{$i} {
-				min-height: core_box($i - 27,$bodywidth) ;
+				min-height: 3.6rem * core($i + 23);
 				width: 100%;
 			}
 			.mobilecorebox_x#{$i} {
-				min-width: core_box($i - 27,$bodywidth) ;
+				min-width: 3.6rem * core($i + 23) ;
 	
 			}
 			.mobilepad_t#{$i}  {
@@ -178,7 +198,7 @@
 			.mobilepad_r#{$i}  {
 				padding-right: 1rem * core_font($i - 27);
 			}
-			.mobilepad_d#{$i}  {
+			.mobilepad_#{$i}  {
 				padding-bottom: 1rem * core_font($i - 27);
 			}
 			.mobilepad_l#{$i}  {
@@ -315,6 +335,21 @@
 		font-weight: 400;
 		font-size: 1rem;
 		appearance: none;
+		background: transparent;
+		border: 0;
+		outline: 0;
+		width: unset;
+	}
+
+	input:active,input:focus {
+		border: 0;
+		outline: 0;
+	}
+
+	input:active,input:focus {
+		border: 0;
+		outline: 0;
+		
 	}
 	.nav {
 		position: fixed;
@@ -392,7 +427,7 @@
 	("13", rgba(208, 234, 255, 0.94)),
 	("14", rgba(208, 197, 255, 0.94)),
 	("15", rgb(252.45,252.45,252.45) ),
-	
+	("16",rgb(249.9,249.9,249.9)),
 
 	;
 
@@ -571,6 +606,17 @@
 		&.back_#{nth($color,1)} {
 		  background: nth($color,2);
 		}
+
+		// &.box.back_#{nth($color,1)} {
+		
+		// 	background: transparent;
+		// 	will-change: background-color;
+		// 	transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+		// 	&:active, &:focus {
+		// 		transition: width 200ms;
+		// 		background-color: nth($color,2);
+		// 	}
+		// }
 	}
 	@each $border in $borders {
 		&.border_t#{nth($border,1)} { 
@@ -654,6 +700,9 @@
 		// font-size: 0.7091412742382275rem;
 	}
 	
+	.box {
+		transition: none !important;
+	}
 }
 
 
