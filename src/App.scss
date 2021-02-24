@@ -103,9 +103,9 @@
 		}
 		@media (orientation: portrait) {
 			&.box.corebox_x#{$i} {
-				width: 3.6rem * core($i + 23 - 4);
+				width: 3.6rem * core($i + 23 - 5);
 				&:active, &:focus {
-					width: 3.6rem * core($i + 23 - 4);
+					width: 3.6rem * core($i + 23 - 5);
 				}
 			}
 			

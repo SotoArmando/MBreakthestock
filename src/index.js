@@ -39,7 +39,7 @@ ReactDOM.render(
 
         </div>
         <div className="corebox_14 col border_t3 center items_center  ">
-          <div className="row center items_center corebox_8">
+          <div className="row center items_center corebox_4 mobilecorebox_8">
             <div className="  row center corebox_x3">
               <div className="maskicon_linkedin  " />
             </div>
