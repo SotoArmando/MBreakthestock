@@ -20,7 +20,7 @@ export default function Nav({ title, titleback, isScrollCero }) {
                 </div>
             </div>
         </div>
-        <div className="row center corebox_6 mobilecorebox_4  nav" style={{ pointerEvents: "none" }}>
+        <div className="row center corebox_6 mobilecorebox_6  nav" style={{ pointerEvents: "none" }}>
             <div className="row center" style={{ opacity: (isScrollCero ? 1 : 0), willChange: "opacity" }}>
                 <span className="f_3 f600 ls_26 fore_11 ">
                     <div className="svgicon_icon iconsize_32 mar_r20" />

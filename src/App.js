@@ -14,7 +14,14 @@ import Visitedsymbol from './components/Visitedsymbol';
 import Visitedmarketnews from './components/Visitedmarketnews';
 import { Filter, Select } from './components/Filter';
 import Calendarevent from './components/Calendarevent';
+import Visitcalendarevent from './containers/Visitcalendarevent';
+import Visitsymbol from './containers/Visitsymbol';
 
+import {
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 class App extends React.Component {
@@ -108,69 +115,69 @@ class App extends React.Component {
       <div id="doc" className="col back_15">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
 
-        <div id="topanchor" className="corebox_6 mobilecorebox_4" />
+        <div id="topanchor" className="corebox_6 mobilecorebox_6" />
 
+        <Switch>
+          <Route path="/visitsymbol">
+            <Visitsymbol />
+          </Route>
+          <Route path="/visitcalendarevent">
+            <Visitcalendarevent />
+          </Route>
+          <Route path="/">
+            <div className="row corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
+              <div className="row">
+                <div className="f_2 corebox_x5 mobilecorebox_x5 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
+              </div>
 
-
-        <div className="row corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
-          <div className="row">
-            <div className="f_2 corebox_x5 mobilecorebox_x5 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
-          </div>
-
-          <div className="row mobilepad_r24">
-            <input className="f_0 box corebox_x10  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
-            <div className="back_2 row center corebox_x2 ">
-              <div className="maskicon_search  back_11" />
+              <div className="row mobilepad_r24">
+                <input className="f_0 box corebox_x10  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
+                <div className="back_2 row center corebox_x2 ">
+                  <div className="maskicon_search  back_11" />
+                </div>
+              </div>
             </div>
-          </div>
+            <div className="col corebox_18 mobilecorebox_15 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_b34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
+              <span className="fore_11 f_6   f700 lh_3 ">Welcome to my Brainspace<br /> a Sample Project.</span>
+              <span className=" pad_t24 f_3  ">Flex those bones</span>
+            </div>
+            <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
+            <div className="row wrap basis_42">
+              {
+                (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, 6).map(e =>
+                  <Calendarevent {...e[1]} />
+                )
+              }
+            </div>
+            <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
+            <div className="row wrap basis_43">
+              {(data.length === 0) ? 'Loading' : data.slice(0, 10).map(e =>
+                <Visitedsymbol {...e} isCrypto={false} />
+              )
+              }
 
-        </div>
+            </div>
+            <Select name="Binance" value="" options={[0, 0, 0]} />
+            <div className="row wrap basis_43">
+              {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
+                <Visitedsymbol {...e} isCrypto={true} />
+              )
+              }
 
-        <div className="col corebox_18 mobilecorebox_15 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_b34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
-          <span className="fore_11 f_6  f_m_4 f700 lh_29">Welcome to my Brainspace<br /> a Sample Project.</span>
-          <span className=" pad_t24 f_3 f_m_1 ">Flex those bones</span>
-        </div>
-
-        <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
-
-        <div className="row wrap basis_42">
-          {
-            (Object.entries(data3).length === 0) ? 'Loading' : Object.entries(data3).slice(0, 6).map(e =>
-              <Calendarevent {...e[1]} />
-            )
-          }
-        </div>
-
-        <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
-
-        <div className="row wrap basis_43">
-          {(data.length === 0) ? 'Loading' : data.slice(0, 10).map(e =>
-            <Visitedsymbol {...e} isCrypto={false} />
-          )
-          }
-
-        </div>
-
-        <Select name="Binance" value="" options={[0, 0, 0]} />
-
-        <div className="row wrap basis_43">
-          {(data1.length === 0) ? 'Loading' : data1.slice(0, 10).map(e =>
-            <Visitedsymbol {...e} isCrypto={true} />
-          )
-          }
-
-        </div>
-        <div className="corebox_7" />
-
-        <Select name="Recently" value="" options={[0, 0, 0]} openable={true} />
-
-        <div className="row wrap basis_45">
-          {(data2.length === 0) ? 'Loading' : data2.slice(0, 12).map(e =>
-            <Visitedmarketnews {...e} />
-          )
-          }
-        </div>
+            </div>
+            <div className="corebox_7" />
+            <Select name="Recently" value="" options={[0, 0, 0]} openable={true} />
+            <div className="row wrap basis_45">
+              {(data2.length === 0) ? 'Loading' : data2.slice(0, 12).map(e =>
+                <Visitedmarketnews {...e} />
+              )
+              }
+            </div>
+          </Route>
+        </Switch>
         <div className="corebox_10"></div>
+
+
       </div>
     );
   }

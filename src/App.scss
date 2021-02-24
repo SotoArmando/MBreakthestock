@@ -129,15 +129,22 @@
 	@for $i from 0 through 50 {
 	  .f_#{$i} {
 		font-size: 1rem * core_font($i);
+		@for $ii from 0 through 50 { 
+			&.lh_#{$ii} {
+				line-height: (1rem * core_font($i)) * core($ii + 27);
+			}
+			&.mobilelh_#{$ii} {
+				line-height: (1rem * core_font($i)) * core($ii + 27) ;
+			}
+		}
+		
 	  }
 
 	
 	  .ls_#{$i} {
 		letter-spacing: .025rem * core($i);
 	  }
-	  .lh_#{$i} {
-		line-height: 1 * core($i);
-	  }
+	  
 	}
 	@for $i from 1 through 50 {
 	  .z_index#{$i} {
@@ -186,8 +193,18 @@
 		@for $i from 0 through 50 {
 			.f_m_#{$i} {
 				font-size: 1rem * core_font($i);
+
+				
 			  }
-			  
+			.f_#{$i} {
+				@for $ii from 0 through 50 { 
+					&.mobilelh_#{$ii} {
+						line-height: (1rem * core_font($i)) * core($ii + 27) ;
+					}
+				}
+				
+			  }
+			
 			.mobilecorebox_#{$i} {
 				min-height: 3.6rem * core($i + 23);
 				width: 100%;
@@ -454,7 +471,8 @@
 	("13",rgb(204,204,204)),
 	("14",rgb(191.25,191.25,191.25)),
 	("15",rgb(191.25,191.25,191.25)),
-	("16",rgb(76.5,76.5,76.5))
+	("16",rgb(76.5,76.5,76.5)),
+	("17",rgb(102,102,102))
 	;
 	// $recipes-pick: ("a",url(../res/pic/recipes_pic/a.jpg)),("b",url(../res/pic/recipes_pic/b.jpg)),("c",url(../res/pic/recipes_pic/c.jpg)),
 	// ("d",url(../res/pic/recipes_pic/d.jpg)),("e",url(../res/pic/recipes_pic/e.jpg)),("f",url(../res/pic/recipes_pic/f.jpg)),
@@ -470,7 +488,15 @@
 	,("more_1","Click for more details");
 	
 
-	
+	.before_1::before {
+		position: absolute;
+		content: "";
+		height: 3.6rem * core(18 + 23);
+		background: linear-gradient(45deg, rgb(225,240,240),#eafafa );
+		width: 100%;
+		left: 0;
+		z-index: -1;
+	}
 	&.hover {
 		position: relative;
 
@@ -546,6 +572,7 @@
 	}
 	
 	@media (orientation: portrait), (max-width: 1000px)  {
+		
 		@each $msg in $hover-msg-mobile {
 			&.msg_#{nth($msg,1)} {
 				&::after {
@@ -701,7 +728,7 @@
 	}
 
 	html {
-		// font-size: 0.7091412742382275rem;
+		font-size: 1rem * core(24);
 	}
 	
 	.box {
