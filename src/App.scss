@@ -88,6 +88,7 @@
 
 		.corebox_x#{$i}:not(.box) {
 			min-width: 3.6rem * core($i + 23);
+			width: unset;
 		}	
 		
 		&.box.corebox_x#{$i} {
@@ -143,6 +144,10 @@
 	
 	  .ls_#{$i} {
 		letter-spacing: .025rem * core($i);
+		
+		&::placeholder {
+			letter-spacing: .025rem * core($i);
+		}
 	  }
 	  
 	}
@@ -235,7 +240,7 @@
 			.mobilemar_r#{$i}  {
 				margin-right: 1rem * core_font($i - 27);
 			}
-			.mobilemar_d#{$i}  {
+			.mobilemar_b#{$i}  {
 				margin-bottom: 1rem * core_font($i - 27);
 			}
 			.mobilemar_l#{$i}  {
@@ -351,7 +356,7 @@
 		font-weight: 400;
 	}
 	
-	input {
+	input, textarea {
 		font-family: 'Poppins';
 		font-weight: 400;
 		font-size: 1rem;
@@ -360,18 +365,17 @@
 		border: 0;
 		outline: 0;
 		width: unset;
+		resize: none;
+		max-width: 100%;
+		box-sizing: border-box;
 	}
 
-	input:active,input:focus {
+	input:active,input:focus,textarea:active,textarea:focus {
 		border: 0;
 		outline: 0;
 	}
 
-	input:active,input:focus {
-		border: 0;
-		outline: 0;
-		
-	}
+	
 	.nav {
 		position: fixed;
 		width: 100%;
@@ -655,7 +659,7 @@
 		}
 
 		&.border_b#{nth($border,1)} { 
-			border-top: nth($border,3) solid nth($border,2);
+			border-bottom: nth($border,3) solid nth($border,2);
 		}
 		
 		&.border_#{nth($border,1)} {
@@ -722,7 +726,21 @@
 
 @media (orientation: portrait), (max-width: 1000px) {
 	@include app(100vw, 1);
+
 	
+	@for $i from 1 through 50 { 
+		.basis_#{$i} {
+			display: flex;
+			flex-wrap: wrap;
+	
+			& > * {
+				flex: 1 1 ((1rem * core(24)) * core($i));
+				flex-grow: 1;
+			}
+			
+		}
+	}
+
 	.mobilehide {
 		display: none;
 	}
