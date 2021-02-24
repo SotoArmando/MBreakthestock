@@ -114,11 +114,11 @@ class App extends React.Component {
 
         <div className="row corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
           <div className="row">
-            <div className="f_2 corebox_x5 mobilecorebox_x15 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
+            <div className="f_2 corebox_x5 mobilecorebox_x5 start items_center mobilepad_l24 f500 btn hover ls_25">HOME<div className="to_hover fore_11 f500 start items_center mobilepad_l24">HOME</div></div>
           </div>
 
           <div className="row mobilepad_r24">
-            <input className="f_0 box corebox_x5  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
+            <input className="f_0 box corebox_x10  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
             <div className="back_2 row center corebox_x2 ">
               <div className="maskicon_search  back_11" />
             </div>

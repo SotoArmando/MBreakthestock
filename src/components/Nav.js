@@ -12,8 +12,8 @@ export default function Nav({ title, titleback, isScrollCero }) {
 
                 <div className="row end" style={{ opacity: (isScrollCero ? 0 : 1), willChange: "opacity" }}>
                     <div className="row mobilepad_r24">
-                        <input className="f_0 box  back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
-                        <div className="back_2 row center  ">
+                        <input className="f_0 box  back_2 corebox_3 corebox_x10 pad_l28 fore_11 f400 " placeholder="Search ..." />
+                        <div className="back_2 row center  corebox_x2">
                             <div className="maskicon_search  back_11" />
                         </div>
                     </div>
