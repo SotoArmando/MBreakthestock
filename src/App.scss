@@ -734,7 +734,7 @@
 			flex-wrap: wrap;
 	
 			& > * {
-				flex: 1 1 ((1rem * core(24)) * core($i));
+				flex: 1 1 ((1rem * core(25)) * core($i));
 				flex-grow: 1;
 			}
 			
@@ -746,7 +746,7 @@
 	}
 
 	html {
-		font-size: 1rem * core(24);
+		font-size: 1rem * core(27);
 	}
 	
 	.box {

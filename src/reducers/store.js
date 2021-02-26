@@ -1,6 +1,13 @@
 import { createStore } from 'redux'
-import {rootReducer, appState} from './reducersindex'
+import { rootReducer } from './index'
 
-const store = createStore(rootReducer,appState)
+let initialstate = {
+    news: [],
+    events: [],
+    forex: [],
+    crypto: [],
+};
+
+const store = createStore(rootReducer,initialstate)
 
 export default store;

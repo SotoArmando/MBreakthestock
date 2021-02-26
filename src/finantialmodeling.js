@@ -71,8 +71,6 @@ async function fetchMarketnews() {
 }
 
 async function fetchEconomicCalendar() {
-
-
     const response = await checkTry('https://finnhub.io/api/v1/calendar/economic?token=c01h33v48v6r07iq7hrg', { cache: "force-cache" });
     const data = await response.json();
 

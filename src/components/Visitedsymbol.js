@@ -7,6 +7,7 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
     const history = useHistory();
     const [bidAsk, setbidAsk] = useState(0);
     const [growth, setGrowth] = useState(0);
+    
 
     const Fetchcryptocandles = (symbol, key) => {
         fetchCryptoCandles(symbol).then(e => {
