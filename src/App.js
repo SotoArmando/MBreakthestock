@@ -97,7 +97,7 @@ class App extends React.Component {
                 (Object.entries(events).length === 0) ? 'Loading' : Object.entries(events).slice(0, 6).map(e => <Calendarevent {...e[1]} />)
               }
             </div>
-
+          
             <Chart0 />
             <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
             <div className="row wrap basis_43">

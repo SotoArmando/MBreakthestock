@@ -550,7 +550,12 @@
 		&.back_#{nth($color,1)} {
 		  background: nth($color,2);
 		}
-
+		&.chartback_#{nth($color,1)} * {
+			background: nth($color,2);
+		}
+		
+		
+		
 		// &.box.back_#{nth($color,1)} {
 		
 		// 	background: transparent;
