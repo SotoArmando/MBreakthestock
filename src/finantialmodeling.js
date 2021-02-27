@@ -33,9 +33,9 @@ async function fetchForexCandles(symbol) {
     const response = await checkTry('https://finnhub.io/api/v1/forex/candle?symbol=' + symbol + '&resolution=60&from=' + from + '&to=' + to + '&token=c01h33v48v6r07iq7hrg', { cache: "force-cache" });
     const data = await response.json();
 
-    if (data.hasOwnProperty("c") && !data.hasOwnProperty("error")) {
-        console.log(data.c[data.c.length - 1], data.c[0])
-        return [data.c[0], (data.c[data.c.length - 1] / data.c[0]).toString().substring(0, 5)];
+    if (data.hasOwnProperty("c") && !data.hasOwnProperty("error") && data) {
+
+        return data.s === "no_data" ? [] : [data.c[0], (data.c[data.c.length - 1] / data.c[0]).toString().substring(0, 5)];
     } else {
         return [];
     }

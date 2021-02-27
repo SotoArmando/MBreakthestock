@@ -22,6 +22,7 @@ import {
   Link,
   withRouter
 } from "react-router-dom";
+import Landing from './containers/Landing';
 
 
 
@@ -88,10 +89,7 @@ class App extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col corebox_18 mobilecorebox_14 center items_start pad_l34 pad_r34 pad_b30 pad_t30 back_grad_9 mobilepad_b34 mobilepad_t34 mobilepad_l29 mobilepad_r29 mobilepad_d29">
-              <span className="fore_11 f_6 f_m_4   f700 lh_2 ">Welcome to my Brainspace<br /> a Sample Project.</span>
-              <span className=" pad_t24 f_3 f_m_2  ">Flex those bones</span>
-            </div>
+            <Landing />
             <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} />
             <div className="row wrap basis_42">
               {
@@ -101,23 +99,20 @@ class App extends React.Component {
             <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
             <div className="row wrap basis_43">
               {
-                (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 6).map(({1: e}) => {
-                  debugger;
-                  return  <Visitedsymbol {...e} isCrypto={false} />
-                })
+                (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 6).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} />)
               }
             </div>
             <Select name="Binance" value="" options={[0, 0, 0]} />
             <div className="row wrap basis_43">
               {
-                (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 6).map(({1: e}) => <Visitedsymbol {...e} isCrypto={true} />)
+                (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 6).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} />)
               }
             </div>
             <div className="corebox_7" />
             <Select name="Recently" value="" options={[0, 0, 0]} openable={true} />
             <div className="row wrap basis_45">
               {
-                (Object.entries(news).length === 0) ? 'Loading' : Object.entries(news).slice(0, 6).map(({1: e}) => <Visitedmarketnews {...e} />)
+                (Object.entries(news).length === 0) ? 'Loading' : Object.entries(news).slice(0, 6).map(({ 1: e }) => <Visitedmarketnews {...e} />)
               }
             </div>
           </Route>
