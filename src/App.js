@@ -97,19 +97,26 @@ class App extends React.Component {
                 (Object.entries(events).length === 0) ? 'Loading' : Object.entries(events).slice(0, 6).map(e => <Calendarevent {...e[1]} />)
               }
             </div>
-          
-            <Chart0 />
+
             <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
-            <div className="row wrap basis_43">
-              {
-                (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} />)
-              }
+            <div className="row wrap basis_46 back_grad_9">
+              <Chart0 />
+              <div className="row wrap basis_43">
+                {
+                  (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} />)
+                }
+              </div>
             </div>
+
             <Select name="Binance" value="" options={[0, 0, 0]} />
-            <div className="row wrap basis_43">
-              {
-                (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} />)
-              }
+            <div className="row wrap basis_46 back_grad_9">
+              <Chart0 />
+              <div className="row wrap basis_43">
+                {
+                  (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} />)
+                
+                }
+              </div>
             </div>
             <div className="corebox_7" />
             <Select name="Recently" value="" options={[0, 0, 0]} openable={true} />

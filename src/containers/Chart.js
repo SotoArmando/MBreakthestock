@@ -51,8 +51,8 @@ export default class Chart0 extends Component {
 		
 
         return (
-            <div className="corebox_18 mobilecorebox_16 col center back_grad_9  pad_l34 pad_r34 mobilepad_0">
-                  <Select name="USD EUR" value="" options={[0, 0, 0]} openable={false} />
+            <div className="corebox_18 mobilecorebox_16 col center   pad_l34 pad_r34 mobilepad_0">
+                <Select name="0.000845 USD/EUR" value="Oanda Last 72 Hours" options={[0, 0, 0]} openable={false} />
                 <CanvasJSChart options={options} className="maxcorebox_3 "
                 /* onRef = {ref => this.chart = ref} */
                 />
