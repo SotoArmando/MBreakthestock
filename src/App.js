@@ -108,7 +108,7 @@ class App extends React.Component {
               </div>
             </div>
 
-            <Select name="Binance" value="" options={[0, 0, 0]} />
+            <Select name="Binance" value="" options={[0, 0, 0]} openable={true} />
             <div className="row wrap basis_46 back_grad_9">
               <Chart0 />
               <div className="row wrap basis_43">
