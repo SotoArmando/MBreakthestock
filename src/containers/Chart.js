@@ -2,7 +2,7 @@ import Chart from "react-google-charts";
 
 import { Component, useEffect, useState } from "react";
 import '../css/graphs.css';
-import { convertRemToPixels, returnportionwidth } from "../Util";
+import { convertRemToPixels, returnportionwidth } from "../lib/Util";
 import CanvasJSReact from '../lib/canvasjs.react';
 import { Select } from "../components/Filter";
 //var CanvasJSReact = require('./canvasjs.react');
@@ -40,7 +40,7 @@ export default class Chart0 extends Component {
                 gridThickness: 1,
 			},
 			data: [{
-                lineColor:"rgb(248,64,43)",
+                lineColor:"rgb(69,208,156)",
 				type: "spline",
 				toolTipContent: "Hour {x}: {y} USD",
 				dataPoints: [
@@ -51,8 +51,8 @@ export default class Chart0 extends Component {
 		
 
         return (
-            <div className="corebox_18 mobilecorebox_16 col center   pad_l34 pad_r34 mobilepad_0">
-                <Select name="0.000845 USD/EUR" value="Oanda Last 72 Hours" options={[0, 0, 0]} openable={false} />
+            <div className="corebox_18 mobilecorebox_16 col center items_start  pad_l34 pad_r34 mobilepad_0">
+                <span className="f_3 fore_11 f600 row items_end corebox_3 pad_b27">0.000845 USD/EUR<span className="f_2 f400 fore_15 mar_l25">Oanda Last 72 Hours</span></span>
                 <CanvasJSChart options={options} className="maxcorebox_3 "
                 /* onRef = {ref => this.chart = ref} */
                 />

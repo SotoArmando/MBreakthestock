@@ -7,6 +7,13 @@ const rootReducer = combineReducers({
   events: defaultreducer('events'),
   forex: defaultreducer('forex'),
   crypto: defaultreducer('crypto'),
+  state: defaultreducer('state'),
+},{
+  news: [],
+  events: [],
+  forex: [],
+  crypto: [],
+  state: [],
 })
 
 export { rootReducer }

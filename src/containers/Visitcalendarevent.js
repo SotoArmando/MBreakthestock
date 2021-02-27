@@ -1,7 +1,8 @@
 import Landing from "./Landing";
 
 
-export default function Visitcalendarevent() {
+export default function Visitcalendarevent({addstate}) {
+	
     return <div className="col ">
 		<Landing />
         <div className="corebox_8 col center items_start pad_t32 pad_b36 pad_l35 pad_r35 mobilepad_l28 mobilepad_r28" >

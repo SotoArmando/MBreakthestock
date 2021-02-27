@@ -11,7 +11,7 @@ export default function Landing() {
 
     const content = ["back_3", "back_grad_9", "back_red"]
     const contentl = content.length;
-
+    
     const swap = (n) => n < 0 ? contentl - 1 : n % contentl;
 
     let [movement, setMovement] = useState(0);
@@ -20,7 +20,7 @@ export default function Landing() {
 
     const u = ((1 / 5) * 100);
 
-
+    
     const mapActive = (active, last) => {
         let className = !last ? " mar_r24 " : "";
         return <div className={className + "bidcorebox_1 back_green borderradius_27"} style={{ opacity: active ? 0.96 : 0.24 }} />

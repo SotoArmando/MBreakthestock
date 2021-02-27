@@ -1,13 +1,17 @@
 import { createStore } from 'redux'
 import { rootReducer } from './index'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
-let initialstate = {
-    news: [],
-    events: [],
-    forex: [],
-    crypto: [],
-};
+const persistConfig = {
+    key: 'root',
+    storage,
+}
 
-const store = createStore(rootReducer,initialstate)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export default store;
+
+
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { fetchForexCandles, fetchCryptoCandles } from '../finantialmodeling';
+import { fetchForexCandles, fetchCryptoCandles } from '../lib/finantialmodeling';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
-function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, finnhub }) {
+function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto,addstate }) {
     const history = useHistory();
     const [bidAsk, setbidAsk] = useState(0);
     const [growth, setGrowth] = useState(0);
@@ -25,14 +25,19 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
 
     const mapNumbertoRead = (number) => (number) ? number.toString().lenght > 5 ? number.toString().slice(0, 7) : number.toString().slice(0, 8) : 0;
 
+    const clickHandler = () => { 
+        addstate({description, displaySymbol, symbol, basis, isCrypto},"symbolclicked");
+        history.push('/visitsymbol') 
+    }
     if (bidAsk === 0) {
         setbidAsk('Loading')
         let key = isCrypto ? "fetchCryptoCandles_" + symbol : "fetchForexCandles_" + symbol
         if (isCrypto) { Fetchcryptocandles(symbol, key) } else { Fetchforexcandles(symbol, key) }
     }
 
+
     return (
-        <div onClick={() => { history.push('/visitsymbol') }} className="col corebox_8 mobilecorebox_7 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
+        <div onClick={() => clickHandler() } className="col corebox_8 mobilecorebox_7 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
             <div className="allsize  col  pad_t27 borderradius_25">
                 <div className="row center space_between allwidth">
                     <span className="f_1 f500 fore_6">{displaySymbol}</span>
@@ -56,15 +61,8 @@ function Visitedsymbol({ description, displaySymbol, symbol, basis, isCrypto, fi
         </div>)
 }
 
-const mapStateToProps = (state) => {
-    const { finnhub } = state;
-    return {
-        finnhub
-    }
-};
 
-const mapDispatchToProps = dispatch => ({
-    fetchfinnhub: (finnhub, key) => dispatch({ type: 'finnhub/fetch', finnhub, key }),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Visitedsymbol)
+
+
+export default Visitedsymbol
