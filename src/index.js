@@ -14,6 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <Router>
+        
         <App />
         <div className="col  corebox_18  before_1 ">
           <div className="row wrap start f500 pad_t33  corebox_13 basis_44">

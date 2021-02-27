@@ -1,0 +1,41 @@
+.axis-lines{
+	stroke:rgb(229.5,229.5,229.5);
+	stroke-width: 0.5;
+}
+
+.last_line {
+    stroke:rgb(51,51,51);
+	stroke-width: 3;
+	fill: none;
+    stroke-dasharray: 0;
+	stroke-width: .1rem ;
+    z-index: 2;
+}
+
+.graphline{
+	stroke:rgb(127.5,127.5,127.5);
+	stroke-width: 3;
+	fill: none;
+}
+
+.x-labels{
+	text-anchor: middle;
+}
+
+.y-labels{
+	text-anchor: end;
+	text-anchor: middle;
+}
+
+.x-heading{
+	text-anchor: middle;
+}
+
+.y-heading{
+	text-anchor: middle;
+}
+
+.chart_text_0 {
+    z-index: 2;
+    fill: rgb(127.5,127.5,127.5);
+}

@@ -49,7 +49,7 @@ async function fetchCryptoCandles(symbol) {
 
     const response = await checkTry('https://finnhub.io/api/v1/crypto/candle?symbol=' + symbol + '&resolution=60&from=' + from + '&to=' + to + '&token=c01h33v48v6r07iq7hrg', { cache: "force-cache" });
     const data = await response.json();
-
+    
     if (data.hasOwnProperty("c") && !data.hasOwnProperty("error")) {
         return [data.c[0], data.c[1]];
         

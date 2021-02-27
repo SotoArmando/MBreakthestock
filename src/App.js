@@ -23,6 +23,7 @@ import {
   withRouter
 } from "react-router-dom";
 import Landing from './containers/Landing';
+import Chart0 from './containers/Chart';
 
 
 
@@ -96,16 +97,18 @@ class App extends React.Component {
                 (Object.entries(events).length === 0) ? 'Loading' : Object.entries(events).slice(0, 6).map(e => <Calendarevent {...e[1]} />)
               }
             </div>
+
+            <Chart0 />
             <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} />
             <div className="row wrap basis_43">
               {
-                (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 6).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} />)
+                (Object.entries(forex).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} />)
               }
             </div>
             <Select name="Binance" value="" options={[0, 0, 0]} />
             <div className="row wrap basis_43">
               {
-                (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 6).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} />)
+                (Object.entries(crypto).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} />)
               }
             </div>
             <div className="corebox_7" />
@@ -118,7 +121,7 @@ class App extends React.Component {
           </Route>
         </Switch>
         <div className="corebox_10"></div>
-      </div>
+      </div >
     );
   }
 }
