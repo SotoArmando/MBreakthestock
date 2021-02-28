@@ -9,7 +9,7 @@ export default function Landing() {
         </div>
     </div>
 
-    const content = ["back_3", "back_grad_9", "back_red"]
+    const content = ["back_grad_9", "back_4", "back_red"]
     const contentl = content.length;
     
     const swap = (n) => n < 0 ? contentl - 1 : n % contentl;

@@ -5,6 +5,9 @@ export default function defaultreducer(name) {
       case name+'/add':
         debugger;
         return { ...state, [key]: { ...payload } };
+      case name+'/merge':
+          debugger;
+          return { ...state, ...payload };
       case name+'/bulk':
         return { ...state, ...payload };
       default:

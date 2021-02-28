@@ -9,8 +9,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCrypto, fetchForex, fetchMarketnews, fetchEconomicCalendar } from './lib/finantialmodeling';
 
-import Visitedsymbol from './components/Visitedsymbol';
-import Visitedmarketnews from './components/Visitedmarketnews';
+import Symbol from './components/Symbol';
+import Marketnews from './components/Marketnews';
 import { Filter, Select } from './components/Filter';
 import Calendarevent from './components/Calendarevent';
 import Visitcalendarevent from './containers/Visitcalendarevent';
@@ -61,9 +61,9 @@ class App extends React.Component {
 
   render() {
     const { isScrollCero } = this.state;
-    const { history, events, crypto, forex, news, addstate } = this.props;
- 
-    
+    const { history, events, crypto, forex, news, addstate, state: {landingcryptosymbol, landingforexsymbol}} = this.props;
+
+    debugger;
     return (
       <div id="doc" className="col back_15 ">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
@@ -72,10 +72,10 @@ class App extends React.Component {
 
         <Switch>
           <Route path="/visitsymbol/">
-            <Visitsymbol addstate={addstate}/>
+            <Visitsymbol addstate={addstate} />
           </Route>
           <Route path="/visitcalendarevent">
-            <Visitcalendarevent  addstate={addstate}/>
+            <Visitcalendarevent addstate={addstate} />
           </Route>
           <Route path="/">
             <div className="row corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
@@ -91,38 +91,35 @@ class App extends React.Component {
               </div>
             </div>
             <Landing />
-            <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} addstate={addstate}/>
+            <Select name="Market Calendar" value="Coming next" options={[0, 0, 0]} addstate={addstate} />
             <div className="row wrap basis_42">
               {
-                (Object.entries(events || {}).length === 0) ? 'Loading' : Object.entries(events).slice(0, 12).map(e => <Calendarevent {...e[1]} addstate={addstate}/>)
+                (Object.entries(events || {}).length === 0) ? 'Loading' : Object.entries(events).slice(0, 12).map(e => <Calendarevent {...e[1]} addstate={addstate} />)
               }
             </div>
 
-            <Select name="Oanda" value="" options={[0, 0, 0]} openable={true} addstate={addstate}/>
-            <div className="row wrap basis_46 back_grad_9">
-              <Chart0 />
-              <div className="row wrap basis_43">
+            <div className="row wrap basis_46 ">
+              <Chart0 {...landingforexsymbol}/>
+              <div className="row wrap basis_43 back_grad_9">
                 {
-                  (Object.entries(forex || {}).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={false} addstate={addstate} />)
+                  (Object.entries(forex || {}).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 10).map(({1:e}, i) => <Symbol {...e} {...{ isFirst: i === 0, isCrypto: false, addstate }} />)
                 }
               </div>
             </div>
 
-            <Select name="Binance" value="" options={[0, 0, 0]} openable={true} addstate={addstate} />
-            <div className="row wrap basis_46 back_grad_9">
-              <Chart0 />
-              <div className="row wrap basis_43">
+            <div className="row wrap basis_46 ">
+              <Chart0 {...landingcryptosymbol}/>
+              <div className="row wrap basis_43 back_grad_9">
                 {
-                  (Object.entries(crypto || {}).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 10).map(({ 1: e }) => <Visitedsymbol {...e} isCrypto={true} addstate={addstate}/>)
-                
+                  (Object.entries(crypto || {}).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 10).map(({1:e}, i) => <Symbol {...e} {...{ isFirst: i === 1, isCrypto: true, addstate: addstate }} />)
                 }
               </div>
             </div>
             <div className="corebox_7" />
-            <Select name="Recently" value="" options={[0, 0, 0]} openable={true}  addstate={addstate}/>
+            <Select name="Recently" value="" options={[0, 0, 0]} openable={true} addstate={addstate} />
             <div className="row wrap basis_45">
               {
-                (Object.entries(news || {}).length === 0) ? 'Loading' : Object.entries(news).slice(0, 6).map(({ 1: e }) => <Visitedmarketnews {...e} />)
+                (Object.entries(news || {}).length === 0) ? 'Loading' : Object.entries(news).slice(0, 6).map(({ 1: e }) => <Marketnews {...e} />)
               }
             </div>
           </Route>
@@ -133,7 +130,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => state;
+
+const mapStateToProps = state => state;
+
 
 const mapDispatchToProps = dispatch => ({
   bulkcrypto: (payload, key = "null") => dispatch({ type: 'crypto/bulk', payload, key }),

@@ -1,4 +1,4 @@
-async function checkTry(url,fetchOptions, r = 3) {
+async function checkTry(url,fetchOptions, r = 10) {
     function onError(response){ 
         return (response && !response.hasOwnProperty("error")) ? response 
         : wait(2000).then(() => checkTry(url,fetchOptions, r - 1)) 
@@ -31,13 +31,12 @@ async function fetchForexCandles(symbol) {
     const to = parseInt(+ new Date() / 1e3);
 
     const response = await checkTry('https://finnhub.io/api/v1/forex/candle?symbol=' + symbol + '&resolution=60&from=' + from + '&to=' + to + '&token=c01h33v48v6r07iq7hrg', { cache: "force-cache" });
-    const data = await response.json();
+    const data = await response.json(); 
 
     if (data.hasOwnProperty("c") && !data.hasOwnProperty("error") && data) {
-
-        return data.s === "no_data" ? [] : [data.c[0], (data.c[data.c.length - 1] / data.c[0]).toString().substring(0, 5)];
+        return data.s === "no_data" ?  {c:[0,0]} : data;
     } else {
-        return [];
+        return {c:[0,0]};
     }
 }
 async function fetchCryptoCandles(symbol) {
@@ -51,10 +50,9 @@ async function fetchCryptoCandles(symbol) {
     const data = await response.json();
     
     if (data.hasOwnProperty("c") && !data.hasOwnProperty("error")) {
-        return [data.c[0], data.c[1]];
-        
+        return data.s === "no_data" ?  {c:[0,0]} : data;
     } else {
-        return [];
+        return {c:[0,0]};
     }
 
 }
