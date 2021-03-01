@@ -1,6 +1,6 @@
 import Chart from "react-google-charts";
 
-import { Component, useEffect, useState } from "react";
+import { Component } from "react";
 import '../css/graphs.css';
 import { convertRemToPixels, returnportionwidth } from "../lib/Util";
 import CanvasJSReact from '../lib/canvasjs.react';
@@ -14,59 +14,76 @@ const _data = [0.000819, 0.000845, 0.000842, 0.000825, 0.000823, 0.000817, 0.000
 export default class Chart0 extends Component {
     constructor(args) {
         super(args)
-
-        this.state = {
-            ...args
+        
+        this.state = {  
+            ...args,
+      
         }
+
     }
 
-    render() {
-        const {description, displaySymbol, basis, growth, bidAsk, isCrypto, data} = this.state;
-        debugger;
 
+    componentDidMount() {
+        debugger;
+        this.chart.render();
+    }
+  
+
+    render() {
+        const { description, displaySymbol, basis, growth, bidAsk, isCrypto, data, chart } = this.state;
+
+        let falldata = data || _data;
         const options = {
-			animationEnabled: false,
-			exportEnabled: false,
-            zoomEnabled: true, 
+            animationEnabled: true,
+            zoomEnabled: true,
             backgroundColor: "transparent",
-			title:{
-				text: ""
-			},
-			axisY: {
-				title: "",
-				includeZero: false,
-				suffix: "",
-                lineColor: "rgb(47,47,47)",
+            toolTip: {
+                fontSize: convertRemToPixels(1),
+            },
+
+            axisY: {
+                title: "",
+                includeZero: false,
+                suffix: "",
+                lineColor: "transparent",
                 lineThickness: 3,
-                gridColor: "rgb(204,204,204)"
-			},
-			axisX: {
-				title: "",
-				prefix: "",
-                suffix:"h",
+                gridColor: "rgb(204,204,204)",
+                labelFontSize: convertRemToPixels(1),
+            },
+            axisX: {
+                includeZero: true,
+                title: "",
+                prefix: "",
+                suffix: "h",
                 interval: 12,
                 lineColor: "rgb(47,47,47)",
                 lineThickness: 3,
                 gridColor: "rgb(204,204,204)",
                 gridThickness: 1,
-			},
-			data: [{
-                lineColor:"rgb(69,208,156)",
-				type: "spline",
-				toolTipContent: "Hour {x}: {y} USD",
-				dataPoints: [
-					...(data || _data).slice(0,82).map((e,i) => ({ x:i, y: e }))
-				]
-			}]
-		}
-		
-        let price = (data || _data).slice(0,82)[81]
+                labelFontSize: "1rem",
+            },
+            data: [{
+                lineColor: "rgb(69,208,156)",
+                type: "spline",
+                toolTipContent: "Hour {x}: {y} USD",
+
+                dataPoints: [
+                    ...falldata.slice(0, 72).map((e, i) => ({ x: i, y: e }))
+                ]
+            }]
+        }
+
+        let price = falldata.slice(0, 72)[71]
+        let dif = (falldata[71] - falldata[0])
         return (
-            <div className="corebox_17 mobilecorebox_16 col center items_start  pad_l24 pad_r34 mobilepad_0">
-                <span className="f_3 fore_11 f600 row items_end corebox_3 pad_b27"><span className="f_2 pad_r24">{displaySymbol}</span> {price}</span>
-                <CanvasJSChart options={options} className="maxcorebox_3 "
-                /* onRef = {ref => this.chart = ref} */
-                />
+            <div id="rezizable" className="corebox_16 mobilecorebox_17 col center items_start  pad_l24 pad_r34 mobilepad_0">
+                <span className="f700 f_3">{isCrypto ? "Crypto" : "Forex"}</span>
+                <span className="f_3 fore_11 f600 row wrap items_end corebox_3 pad_b27 mobilepad_l24"><span className="f_2 pad_r24">{displaySymbol}</span> <span className="pad_r24">{price}</span> <span className={(dif > 0 ? "fore_green" : "fore_red") + " "}>{dif.toString().slice(0, 10)}</span> </span>
+                <div className="allsize">
+                    <CanvasJSChart onRef = {ref => this.chart = ref} options={options} />
+                </div>
+
+                
             </div>
         );
     }

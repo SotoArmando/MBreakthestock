@@ -22,7 +22,7 @@ function Symbol({ description, displaySymbol, symbol, basis, isCrypto, addstate,
             fetchCryptoCandles(symbol).then(data => {
                 handleSymbol({ ...symbolhandle, growth: data.c[1], bidAsk: data.c[0], data: data.c })
                 if (isFirst) {
-                    debugger;
+                    
                     addstate({ description, displaySymbol, symbol, basis, growth, bidAsk, isCrypto, data: data.c }, "landingcryptosymbol");
                 }
             })
@@ -32,23 +32,20 @@ function Symbol({ description, displaySymbol, symbol, basis, isCrypto, addstate,
             fetchForexCandles(symbol).then(data => {
                 handleSymbol({ ...symbolhandle, growth: (data.c[data.c.length - 1] / data.c[0]).toString().substring(0, 5), bidAsk: data.c[0], data: data.c })
                 if (isFirst) {
-                    debugger;
+                    
                     addstate({ description, displaySymbol, symbol, basis, growth, bidAsk, isCrypto, data: data.c }, "landingforexsymbol");
                 }
             })
         }
     }
-
-
+    
+    let dailydif = (data != undefined) ? (data[51] - data[0]).toString().slice(0,10) : "No data";
     return (
         <div onClick={() => clickHandler()} className="col corebox_8 mobilecorebox_7 center items_start pad_l24 pad_r24 pad_b27 btn" style={{ flexBasis: basis + 'px' }}>
             <div className="allsize  col  pad_t27 borderradius_25">
                 <div className="row center space_between allwidth">
                     <span className="f_1 f500 fore_6">{displaySymbol}</span>
-                    {/* <span style={{ fontSize: "1rem" }} 
-                            className={"pad_l20 pad_r20 borderradius_16 mar_r10 pad_t5 pad_b5 " 
-                            + ((growth > 1) ? "fore_green" : "fore_red")}>{growth > 1 ? "" : ""} 
-                            {mapNumbertoRead(growth)}%</span> */}
+
                 </div>
                 <div className="row center space_between allwidth">
                     <span className="f500  mar_t15">
@@ -58,6 +55,7 @@ function Symbol({ description, displaySymbol, symbol, basis, isCrypto, addstate,
                     </span>
                     {/* <span className="f600 fore_green mar_t15">Today</span> */}
                 </div>
+                <span className={"f500 "+((dailydif) > 0 ? "fore_green" : "fore_red")}>{(dailydif == "NaN") ? "No data" : dailydif}</span>
             </div>
         </div>)
 }

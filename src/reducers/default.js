@@ -3,10 +3,10 @@ export default function defaultreducer(name) {
     const { key, payload } = action;
     switch (action.type) {
       case name+'/add':
-        debugger;
+        
         return { ...state, [key]: { ...payload } };
       case name+'/merge':
-          debugger;
+          
           return { ...state, ...payload };
       case name+'/bulk':
         return { ...state, ...payload };
