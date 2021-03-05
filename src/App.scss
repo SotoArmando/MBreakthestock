@@ -306,6 +306,7 @@
 		min-height: 100vh;
 		font-family: 'Poppins';
 		font-weight: 400;
+		overflow-x: hidden;
 	}
 	
 	input, textarea {
@@ -355,6 +356,10 @@
 	} 
 	.capitalize {
 		text-transform:capitalize;
+	}
+
+	.uppercase {
+		text-transform: uppercase;
 	}
 	
 	.relative {
@@ -420,6 +425,7 @@
 	("16",rgb(249.9,249.9,249.9)),
 	("17",rgb(191.25,191.25,191.25)),
 	("18", rgb(25.5,25.5,25.5)),
+	("19", rgb(87,242,224)),
 	;
 
 	$fore-colors: ("0",#008000),
@@ -448,6 +454,7 @@
 	("c",url("./css/jpg/back\ iPad\ Pro\ 11.png")),
 	("d",url("./css/jpg/back\ Macbook\ Pro\ 15_.png")),
 	("e",url("./css/jpg/back\ Pixel\ 4\ XL.png")),
+	("f",url("./css/jpg/back_3.png")),
 	;
 
 	
@@ -634,10 +641,12 @@
 
 	.back_size_0 {
 		background-repeat: no-repeat;
-		background-size: 21%;
+		background-size: auto (100% * core(26));
 		background-position: right center;
-		background-position-x: 100% * core(26);
+		background-position-x: 50% * core(30);
 		// background-color: #BDBDBD;
+		// image-rendering:;
+		// image-rendering: -webkit-optimize-contrast;
 	}
 
 	@each $border in $borders {

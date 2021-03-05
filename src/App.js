@@ -3,27 +3,13 @@ import './App.scss';
 import './css/poppins/poppins.css';
 import './css/castoro/castoro.css';
 import './css/lora/lora.css';
-
-import Nav from './components/Nav';
 import React from 'react';
+import { Switch,Route,withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import { fetchCrypto, fetchForex, fetchMarketnews, fetchEconomicCalendar } from './lib/finantialmodeling';
-
-import Symbol from './components/Symbol';
-import Marketnews from './components/Marketnews';
-import { Filter, Select } from './components/Filter';
-import Calendarevent from './components/Calendarevent';
+import Nav from './components/Nav';
 import Visitcalendarevent from './containers/Visitcalendarevent';
 import Visitsymbol from './containers/Visitsymbol';
-
-import {
-  Switch,
-  Route,
-  Link,
-  withRouter
-} from "react-router-dom";
-import Landing from './containers/Landing';
-import Chart0 from './containers/Chart';
+import Index from './components/Index';
 
 
 class App extends React.Component {
@@ -41,18 +27,8 @@ class App extends React.Component {
     }
   }
 
+
   componentDidMount() {
-    const { onRequest } = this.state;
-    const { bulknews, bulkevents, bulkcrypto, bulkforex } = this.props;
-
-    if (onRequest === false) {
-      this.setState({ ...this.state, onRequest: true })
-      fetchCrypto().then(e => { bulkcrypto(e) });
-      fetchForex().then(e => { bulkforex(e) });
-      fetchMarketnews().then(e => { bulknews(e) });
-      fetchEconomicCalendar().then(e => { bulkevents(e) });
-    }
-
     if (
       "IntersectionObserver" in window &&
       "IntersectionObserverEntry" in window &&
@@ -76,12 +52,12 @@ class App extends React.Component {
 
         <div id="topanchor" className="corebox_5 mobilecorebox_6" >
           <div className="row center corebox_5 mobilecorebox_6  " style={{ pointerEvents: "none" }}>
-              <div className="row center" style={{ opacity: (isScrollCero ? 1 : 0), willChange: "opacity" }}>
-                  <span className="f_3 f600 ls_26 fore_11 ">
-                      <div className="svgicon_icon iconsize_32 mar_r20" />
+            <div className="row center" style={{ opacity: (isScrollCero ? 1 : 0), willChange: "opacity" }}>
+              <span className="f_3 f600 ls_26 fore_11 ">
+                <div className="svgicon_icon iconsize_32 mar_r20" />
                       Brainspace
                   </span>
-              </div>
+            </div>
           </div>
         </div>
 
@@ -93,55 +69,7 @@ class App extends React.Component {
             <Visitcalendarevent addstate={addstate} />
           </Route>
           <Route path="/">
-            <div className="row basis_43 corebox_6 mobilecorebox_4 start fore_14 space_between items_center" style={{ opacity: isScrollCero ? 1 : 0, willChange: "opacity" }}>
-              <div className="row start items_center space_between mobilepad_r24 maxedviewwidth">
-                <div className="row     start fore_13 pad_r24 " style={{ width: "unset" }}>
-                  <div className="f_2 f_m_1  start items_center mobilepad_l24 f400 btn hover ls_25" onClick={() => history.push('/')}>Home<div className="to_hover fore_11 f400  start items_center mobilepad_l24">Home</div></div>
-                  <div className="f_2 f_m_1  pad_l27 row center  mobilepad_l24 f400 btn hover ls_25" >News<div className="to_hover fore_11 f400 row center items_center pad_l27 mobilepad_l24">News</div></div>
-                  <div className="f_2 f_m_1  pad_l27 row center  mobilepad_l24 f400 btn hover ls_25" >Events<div className="to_hover fore_11 f400 row center items_center pad_l27 mobilepad_l24">Events</div></div>
-
-                </div>
-              </div>
-
-              <div className="row ">
-                <input className="f_0   back_2 corebox_3 pad_l28 fore_11 f400 " placeholder="Search ..." />
-                <div className="back_2 row center corebox_x2 ">
-                  <div className="maskicon_search  back_11" />
-                </div>
-              </div>
-            </div>
-            <Landing />
-            {/* <Select name="Market Calendar" value="Today" options={[0, 0, 0]} addstate={addstate} /> */}
-            <div className="row back_2 wrap basis_43 corebox_11 center items_center pad_b30">
-              {
-                (Object.entries(events || {}).length === 0) ? 'Loading' : Object.entries(events).slice(0, 8).map(e => <Calendarevent {...e[1]} addstate={addstate} />)
-              }
-            </div>
-
-            <div className="row wrap basis_46 center back_2">
-              <Chart0 {...landingforexsymbol} />
-              <div className="row wrap basis_42 back_grad_9">
-                {
-                  (Object.entries(forex || {}).length === 0) ? 'Loading' : Object.entries(forex).slice(0, 12).map(({ 1: e }, i) => <Symbol {...e} {...{ isFirst: i === 0, isCrypto: false, addstate }} />)
-                }
-              </div>
-            </div>
-
-            <div className="row wrap basis_46 center back_2">
-              <Chart0 {...landingcryptosymbol} />
-              <div className="row wrap basis_42 back_grad_9">
-                {
-                  (Object.entries(crypto || {}).length === 0) ? 'Loading' : Object.entries(crypto).slice(0, 12).map(({ 1: e }, i) => <Symbol {...e} {...{ isFirst: i === 1, isCrypto: true, addstate: addstate }} />)
-                }
-              </div>
-            </div>
-            <div className="corebox_7" />
-            <Select name="Recently" value="" options={[0, 0, 0]} openable={true} addstate={addstate} />
-            <div className="row wrap basis_45">
-              {
-                (Object.entries(news || {}).length === 0) ? 'Loading' : Object.entries(news).slice(0, 12).map(({ 1: e }) => <Marketnews {...e} />)
-              }
-            </div>
+            <Index isScrollCero={isScrollCero} />
           </Route>
         </Switch>
         <div className="corebox_10"></div>
@@ -153,13 +81,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => state;
 
-
-const mapDispatchToProps = dispatch => ({
-  bulkcrypto: (payload, key = "null") => dispatch({ type: 'crypto/bulk', payload, key }),
-  bulkforex: (payload, key = "null") => dispatch({ type: 'forex/bulk', payload, key }),
-  bulknews: (payload, key = "null") => dispatch({ type: 'news/bulk', payload, key }),
-  bulkevents: (payload, key = "null") => dispatch({ type: 'events/bulk', payload, key }),
-  addstate: (payload, key = "null") => dispatch({ type: 'state/add', payload, key }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App))
+export default connect(mapStateToProps)(withRouter(App))
