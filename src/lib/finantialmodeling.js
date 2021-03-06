@@ -73,7 +73,6 @@ async function fetchEconomicCalendar() {
     const data = await response.json();
 
     if (data && !data.hasOwnProperty("error")) {
-        console.log("fetchEconomicCalendar ", data)
         return data.economicCalendar.reduce((total, e, i) => { const key = e.event + e.time; return ((i === 1) ? { [key]: e } : { ...total, [key]: e }); });
     } else {
         return [];

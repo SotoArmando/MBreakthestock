@@ -6,14 +6,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Select } from '../components/Filter';
 import { fetchCrypto, fetchForex, fetchMarketnews, fetchEconomicCalendar } from '../lib/finantialmodeling';
-import { Switch,Route,withRouter } from "react-router-dom";
+
 import Symbol from '../components/Symbol';
 import Marketnews from '../components/Marketnews';
 import Calendarevent from '../components/Calendarevent';
-import Landing from '../containers/Landing';
-import Chart0 from '../containers/Chart';
+import Landing from './Landing';
+import Chart0 from './Chart';
 import Standnavigator from '../components/Standnavigator';
-import Standuser from './Standuser';
+import Standuser from '../components/Standuser';
 
 
 class Index extends React.Component {
@@ -102,4 +102,4 @@ const mapDispatchToProps = dispatch => ({
   addstate: (payload, key = "null") => dispatch({ type: 'state/add', payload, key }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Index))
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

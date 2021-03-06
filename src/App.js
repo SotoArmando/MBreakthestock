@@ -5,13 +5,15 @@ import './css/poppins/poppins.css';
 import './css/castoro/castoro.css';
 import './css/lora/lora.css';
 import React from 'react';
-import { Switch,Route,withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import Nav from './components/Nav';
 import Visitcalendarevent from './containers/Visitcalendarevent';
 import Visitsymbol from './containers/Visitsymbol';
-import Index from './components/Index';
+import Index from './containers/Index';
 import Standsearch from './components/Standsearch';
+import Eventsindex from './containers/Eventsindex';
+import Newsindex from './containers/Newsindex';
 
 
 class App extends React.Component {
@@ -26,33 +28,33 @@ class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0)
+      this.observer.observe(document.querySelector("#topanchor"));
     }
   }
-
-
+  handleObserver(entries) {
+    this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
+  }
   componentDidMount() {
+    debugger;
     if (
       "IntersectionObserver" in window &&
       "IntersectionObserverEntry" in window &&
       "intersectionRatio" in window.IntersectionObserverEntry.prototype
     ) {
-      let observer = new IntersectionObserver((entries => {
-        this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
-      }).bind(this))
-      observer.observe(document.querySelector("#topanchor"));
+      let observer = new IntersectionObserver((entries) => this.handleObserver(entries));
+      this.observer = observer;
+      this.observer.observe(document.querySelector("#topanchor"));
     }
   }
 
   render() {
     const { isScrollCero } = this.state;
     const { history, events, crypto, forex, news, addstate, state: { landingcryptosymbol, landingforexsymbol } } = this.props;
-
-
     return (
       <div id="doc" className="col back_15 ">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
         {/* <Standsearch /> */}
-        <div  className="corebox_5 mobilecorebox_6" >
+        <div className="corebox_5 mobilecorebox_6" >
           <div className="row center corebox_5 mobilecorebox_6  " style={{ pointerEvents: "none" }}>
             <div className="row center Branispacelogo" style={{ opacity: (isScrollCero ? 1 : 0) }}>
               <span className="f_3 f600 ls_26 fore_11 ">
@@ -64,6 +66,15 @@ class App extends React.Component {
         </div>
 
         <Switch>
+          <Route path="/about/">
+            <Newsindex isScrollCero={isScrollCero} history={history}/>
+          </Route>
+          <Route path="/indexnews/" >
+            <Newsindex isScrollCero={isScrollCero} history={history}/>
+          </Route>
+          <Route path="/indexevents/">
+            <Eventsindex isScrollCero={isScrollCero} history={history}/>
+          </Route>
           <Route path="/visitsymbol/">
             <Visitsymbol addstate={addstate} />
           </Route>
@@ -71,7 +82,7 @@ class App extends React.Component {
             <Visitcalendarevent addstate={addstate} />
           </Route>
           <Route path="/">
-            <Index isScrollCero={isScrollCero} />
+            <Index isScrollCero={isScrollCero} history={history} />
           </Route>
         </Switch>
         <div className="corebox_10"></div>
