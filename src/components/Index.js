@@ -51,8 +51,8 @@ class Index extends React.Component {
 
     return (
       <div id="doc" className="col back_15">
-        <Standnavigator history={history} isScrollCero={isScrollCero} />
         <Standuser />
+        <Standnavigator history={history} isScrollCero={isScrollCero} />
         <Landing />
         {/* <Select name="Market Calendar" value="Today" options={[0, 0, 0]} addstate={addstate} /> */}
         <div className="row back_2 wrap basis_43 corebox_11 center items_center pad_b30">

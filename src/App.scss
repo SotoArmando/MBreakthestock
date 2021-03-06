@@ -109,10 +109,7 @@
 			
 		}
 
-		.corebox_x#{$i}:not(.box) {
-			min-width: 3.6rem * core($i + 23);
-			width: unset;
-		}	
+
 		
 		&.box.corebox_x#{$i} {
 			width: 100pt;
@@ -142,6 +139,14 @@
 		}
 	}
 
+	@for $i from 0 through 50 { 
+		.corebox_x#{$i}:not(.box) {
+			min-width: 3.6rem * core($i + 23);
+			width: unset;
+		}
+	}
+
+		
 	@for $i from 0 through 50 {
 	  .f_#{$i} {
 		font-size: 1rem * core_font($i);
@@ -339,8 +344,7 @@
 		// width: body_width(1,$bodywidth);
 		z-index: 15;
 		left: 0;
-
-	
+		will-change: transform, opacity,background-color;
 	}
 
 	
@@ -893,11 +897,24 @@ $hover-msg-mobile:
 	}
 	html {
 		overflow-x: hidden;
-		font-size: 0.8421052631578951rem;
+		font-size: 100% * core(27);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
 
+	
+	input, textarea {
+		font-family: unset;
+		font-weight: unset;
+		font-size: 1rem;
+		appearance: unset;
+		border: unset;
+		outline: unset;
+		width: unset;
+		resize: none;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
 }
 
 

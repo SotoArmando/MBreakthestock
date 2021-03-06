@@ -1,5 +1,6 @@
 
 import './App.scss';
+import './Role.scss';
 import './css/poppins/poppins.css';
 import './css/castoro/castoro.css';
 import './css/lora/lora.css';
@@ -10,6 +11,7 @@ import Nav from './components/Nav';
 import Visitcalendarevent from './containers/Visitcalendarevent';
 import Visitsymbol from './containers/Visitsymbol';
 import Index from './components/Index';
+import Standsearch from './components/Standsearch';
 
 
 class App extends React.Component {
@@ -49,10 +51,10 @@ class App extends React.Component {
     return (
       <div id="doc" className="col back_15 ">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
-
-        <div id="topanchor" className="corebox_5 mobilecorebox_6" >
+        {/* <Standsearch /> */}
+        <div  className="corebox_5 mobilecorebox_6" >
           <div className="row center corebox_5 mobilecorebox_6  " style={{ pointerEvents: "none" }}>
-            <div className="row center" style={{ opacity: (isScrollCero ? 1 : 0), willChange: "opacity" }}>
+            <div className="row center Branispacelogo" style={{ opacity: (isScrollCero ? 1 : 0) }}>
               <span className="f_3 f600 ls_26 fore_11 ">
                 <div className="svgicon_icon iconsize_32 mar_r20" />
                       Brainspace
