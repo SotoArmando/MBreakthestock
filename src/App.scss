@@ -29,18 +29,6 @@
 		min-width: $bodywidth * 5;
 	}
 	
-	@for $i from 1 through 10 {
-	  .o_#{$i} > * {
-		flex-basis: 100% / $i;
-	  }
-	}
-	
-	.op_1 > * {
-		flex-basis: calc(($bodywidth / 14rem) - ($bodywidth % 14rem));
-	}
-	.o_33 > * {
-		flex-basis: calc(100% / 3);
-	}
 	
 	@for $i from 1 through 9 {
 	  .f#{$i * 100} {
