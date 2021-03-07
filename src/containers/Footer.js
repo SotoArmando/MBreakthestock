@@ -6,26 +6,26 @@ export default function Footer() {
         <div className="row wrap start f400 mobilepad_t33  corebox_13 basis_43">
             <div className="col start  items_start pad_b26 mobilepad_l24" >
                 <div className="f_2 corebox_4 f500 items_center row fore_11" >Footer Column</div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Latest Post<div className="to_hover fore_11">Latest Post</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Popular Posts<div className="to_hover fore_11">Popular Posts</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
             </div>
             <div className="col start  items_start pad_b26 mobilepad_l24" >
                 <div className="f_2 corebox_4 f500 items_center row fore_11" >Footer Column</div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Latest Post<div className="to_hover fore_11">Latest Post</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Popular Posts<div className="to_hover fore_11">Popular Posts</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
             </div>
             <div className="col start  items_start pad_b26 mobilepad_l24" >
                 <div className="f_2 corebox_4 f500 items_center row fore_11">Footer Column</div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">My Account<div className="to_hover fore_11">My Account</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Register<div className="to_hover fore_11">Register</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Sign In<div className="to_hover fore_11">Sign In</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
             </div>
             <div className="col start  items_start pad_b26 mobilepad_l24" >
                 <div className="f_2 corebox_4 f500 items_center row fore_11">Footer Column</div>
 
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Privacy Policy<div className="to_hover fore_11">Privacy Policy</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Terms of Use<div className="to_hover fore_11">Terms of Use</div></div>
-                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Contact Information<div className="to_hover fore_11">Contact Information</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
+                <div className="f_1 ls_25 corebox_1 fore_14 btn hover">Cell<div className="to_hover fore_11">Cell</div></div>
 
             </div>
 

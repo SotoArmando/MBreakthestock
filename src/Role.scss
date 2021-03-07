@@ -9,3 +9,83 @@
 .Branispacelogo {
 	will-change: opacity;
 }
+
+.Standsearch {
+	pointer-events: none;
+	opacity: 0;
+	z-index: 50;
+	will-change: pointer-events,transform,opacity;
+	transition: opacity 200ms;
+	-webkit-transition: opacity 200ms;
+	
+	> * > * {
+		will-change: transform,opacity;
+		transition: opacity 200ms;
+		-webkit-transition: opacity 200ms;
+		transition-delay: 600ms;
+		opacity: 0;
+	}
+
+	> * , .row:first-of-type {
+		will-change: transform,opacity;
+		transition: opacity 200ms;
+		-webkit-transition: opacity 200ms;
+		opacity: 0;
+		transition-delay: 100ms;
+	}
+
+	
+	&.active {
+		pointer-events: all;
+		opacity: 1;
+
+		> * > * {
+			opacity: 1;
+		}
+		
+		> *, .row:first-of-type  {
+			opacity: 1;
+		}
+	}
+}
+
+@media (orientation: portrait), (max-width: 1000px) { 
+	.Standsearch {
+		pointer-events: none;
+		opacity: 0;
+		z-index: 50;
+		will-change: pointer-events,transform,opacity;
+		transition: unset;
+		-webkit-transition: unset;
+
+		> * , > form {
+			will-change: transform,opacity;
+			transition: unset;
+			-webkit-transition: unset;
+			transition-delay: unset;
+			opacity: 0;
+		}
+	
+		> * > * {
+			will-change: transform,opacity;
+			transition: unset;
+			-webkit-transition: unset;
+			transition-delay: unset;
+			opacity: 0;
+		}
+		
+		&.active {
+			display: flex;
+			pointer-events: all;
+			opacity: 1;
+	
+			> * {
+				opacity: 1;
+			}
+		
+			> * > * {
+				opacity: 1;
+			}
+		}
+	}
+}

@@ -14,6 +14,7 @@ import Index from './containers/Index';
 import Standsearch from './components/Standsearch';
 import Eventsindex from './containers/Eventsindex';
 import Newsindex from './containers/Newsindex';
+import Standuser from './components/Standuser';
 
 
 class App extends React.Component {
@@ -21,7 +22,8 @@ class App extends React.Component {
     super(props)
     this.state = {
       onRequest: false,
-      isScrollCero: true
+      isScrollCero: true,
+      isStandsearchactive: false
     }
   }
 
@@ -34,6 +36,12 @@ class App extends React.Component {
   handleObserver(entries) {
     this.setState({ ...this.state, isScrollCero: entries[0].boundingClientRect.top >= (-1 * entries[0].boundingClientRect.height) });
   }
+
+  handleStandsearch() {
+    const { isStandsearchactive } = this.state;
+    this.setState({ ...this.state, isStandsearchactive: !isStandsearchactive });
+  }
+
   componentDidMount() {
     debugger;
     if (
@@ -48,12 +56,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { isScrollCero } = this.state;
+    const { isScrollCero, isStandsearchactive } = this.state;
     const { history, events, crypto, forex, news, addstate, state: { landingcryptosymbol, landingforexsymbol } } = this.props;
     return (
       <div id="doc" className="col back_15 ">
         <Nav title="Brainspace" titleback="" isScrollCero={isScrollCero} />
-        {/* <Standsearch /> */}
+        <Standsearch isStandsearchactive={isStandsearchactive} handleStandsearch={this.handleStandsearch.bind(this)}/>
+       
+
         <div className="corebox_5 mobilecorebox_6" >
           <div className="row center corebox_5 mobilecorebox_6  " style={{ pointerEvents: "none" }}>
             <div className="row center Branispacelogo" style={{ opacity: (isScrollCero ? 1 : 0) }}>
@@ -64,16 +74,18 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-
+        
+        <Standuser handleStandsearch={this.handleStandsearch.bind(this)}/>
+     
         <Switch>
           <Route path="/about/">
-            <Newsindex isScrollCero={isScrollCero} history={history}/>
+            <Newsindex isScrollCero={isScrollCero} history={history} />
           </Route>
           <Route path="/indexnews/" >
-            <Newsindex isScrollCero={isScrollCero} history={history}/>
+            <Newsindex isScrollCero={isScrollCero} history={history} />
           </Route>
           <Route path="/indexevents/">
-            <Eventsindex isScrollCero={isScrollCero} history={history}/>
+            <Eventsindex isScrollCero={isScrollCero} history={history} />
           </Route>
           <Route path="/visitsymbol/">
             <Visitsymbol addstate={addstate} />
@@ -82,7 +94,7 @@ class App extends React.Component {
             <Visitcalendarevent addstate={addstate} />
           </Route>
           <Route path="/">
-            <Index isScrollCero={isScrollCero} history={history} />
+            <Index isScrollCero={isScrollCero} history={history}  handleStandsearch={this.handleStandsearch.bind(this)}/>
           </Route>
         </Switch>
         <div className="corebox_10"></div>

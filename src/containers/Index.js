@@ -46,12 +46,11 @@ class Index extends React.Component {
   }
 
   render() {
-    const { isScrollCero } = this.props;
-    const { history, events, crypto, forex, news, addstate, state: { landingcryptosymbol, landingforexsymbol } } = this.props;
+
+    const { isScrollCero, history, events, crypto, forex, news, addstate, state: { landingcryptosymbol, landingforexsymbol } } = this.props;
 
     return (
       <div id="doc" className="col back_15">
-        <Standuser />
         <Standnavigator history={history} isScrollCero={isScrollCero} />
         <Landing />
         {/* <Select name="Market Calendar" value="Today" options={[0, 0, 0]} addstate={addstate} /> */}

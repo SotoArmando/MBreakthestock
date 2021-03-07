@@ -391,6 +391,22 @@
 	.justify {
 		text-align: justify !important;
 	}
+	.notselection {
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		 -khtml-user-select: none; /* Konqueror HTML */
+		   -moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+				user-select: none;
+	} 
+
+	.maxheight {
+		max-height: 100vh;
+		overflow-y: scroll;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+	}
+
 	$borders: ("0",rgb(230,230,230),1px),
 	("1",rgb(190,190,190),1rem * core(15)),
 	("2",rgb(69,208,156),1rem * core(15)),
@@ -430,6 +446,7 @@
 	("17",rgb(191.25,191.25,191.25)),
 	("18", rgb(25.5,25.5,25.5)),
 	("19", rgb(87,242,224)),
+	("20",rgb(47,47,47)),
 	;
 
 	$fore-colors: ("0",#008000),
@@ -487,13 +504,16 @@
 			opacity: 0;
 			transition: opacity 357ms;
 			transition-timing-function:cubic-bezier(0.075, 0.82, 0.165, 1);
+			pointer-events: none;
 
 			&.bottom {
 				top: unset;
 				bottom: 0;
 				height: unset;
 			}
-			
+			&.bottom.pointer { 
+				pointer-events:unset;
+			}
 			
 		}
 		&.inverse .to_hover {
@@ -516,7 +536,9 @@
 	.novisible {
 		opacity: 0;
 	}
-	
+	.nopointerevents {
+		pointer-events: none;
+	}
 	&.hover_b {
 	
 
@@ -721,7 +743,9 @@
 			opacity: 1;
 		}
 	}
-
+	.btn {
+		touch-action: manipulation
+	}
 	.btn:hover {
 		cursor: pointer !important;
 
@@ -768,6 +792,7 @@ $hover-msg-mobile:
 
 	html {
 		font-size: 1rem * core(27);
+		
 	}
 	
 	.box {
@@ -900,6 +925,8 @@ $hover-msg-mobile:
 		font-size: 100% * core(27);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		-ms-touch-action: manipulation;
+		touch-action: manipulation;
 	}
 
 	
@@ -937,6 +964,8 @@ $hover-msg-mobile:
 		font-size:  1rem;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
 
 	}
 	

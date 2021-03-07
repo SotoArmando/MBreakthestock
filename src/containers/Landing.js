@@ -27,7 +27,7 @@ export default function Landing() {
     
     const mapActive = (active, last) => {
         let className = !last ? " mar_r24 " : "";
-        return <div className={className + "bidcorebox_0 back_17 borderradius_27"} style={{ opacity: active ? 0.96 : 0.24 }} />
+        return <div className={className + "bidcorebox_0 back_20 borderradius_27"} style={{ opacity: active ? 0.96 : 0.24 }} />
     }
 
     return <div className="col relative corebox_17 mobilecorebox_15 hover">
@@ -42,12 +42,12 @@ export default function Landing() {
 
         <div style={{ pointerEvents: "None", opacity: 0 }}>{component}</div>
 
-        <div className="absolute bottom row center corebox_4 mobilecorebox_1 to_hover bottom" style={{zIndex:3}}>
-            <div className="corebox_x7 underline center fore_14" onClick={() => { setMovement(movement - u); setTimeout(setActive(swap(active - 1)), 300) }}>Previous</div>
+        <div className="absolute bottom row center corebox_4 mobilecorebox_1 to_hover pointer bottom notselection fore_11" style={{zIndex:3}}>
+            <div className="corebox_x7 underline center  btn" onClick={() => { setMovement(movement - u); setTimeout(setActive(swap(active - 1)), 300) }}>{"< Previous"}</div>
             {
                 [0, 0, 0].map((e, i) => mapActive(active === i, i + 1 === contentl))
             }
-            <div className="corebox_x4 underline center fore_14" onClick={() => { setMovement(movement + u); setTimeout(setActive(swap(active + 1)), 300) }}>Next</div>
+            <div className="corebox_x5 underline center  btn" onClick={() => { setMovement(movement + u); setTimeout(setActive(swap(active + 1)), 300) }}>{"Next >"}</div>
         </div>
     </div>;
 }
