@@ -8,6 +8,7 @@ export default function Standuser({ history, isScrollCero, handleStandsearch }) 
         <span className="corebox_x8 center">* About page</span>
         <span className="corebox_x8 center">* Footer links</span>
         <span className="corebox_x8 center">* Search func</span>
+        <span className="corebox_x8 center">* Social links</span>
       </div>
     </div>
 
